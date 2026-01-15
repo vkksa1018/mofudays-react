@@ -1,0 +1,23 @@
+// 1. 第三方字體 (Google Fonts)
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Zen+Maru+Gothic&display=swap");
+
+// 2. Bootstrap 核心與客製化變數
+// 注意：必須先載入 functions，你的 variables 才能使用 BS 的內建工具 (如 color-level)
+@import "bootstrap/scss/functions";
+@import "./variables"; // 你的自訂變數 (有底線的 _variables.scss)
+@import "bootstrap/scss/bootstrap";
+
+// 3. 全域基礎樣式 (Base / Reset)
+// 包含 body, a 連結等基礎標籤設定
+@import "./base/base";
+
+// 4. 全域 UI 元件樣式 (尚未組件化的樣式)
+// 這些會應用到全站所有的按鈕與表單
+@import "./components/button";
+@import "./components/form";
+@import "./components/dropdown";
+
+// 5. Layout 框架樣式 (全站通用)
+// 只有「每一頁都會出現」的佈局樣式才放在這
+// @import "./layout/announcement";

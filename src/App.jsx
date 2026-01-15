@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container py-5">
+      {/* 1. 測試 Bootstrap 字體與顏色 */}
+      <div className="p-5 mb-4 bg-light rounded-3 border">
+        <div className="container-fluid py-5 text-center">
+          <h1 className="display-5 fw-bold text-primary">毛日和系統測試</h1>
+          <p className="fs-4">
+            如果這行字是 Zen Maru Gothic 字體，代表 Google Fonts 成功。
+            <br />
+            如果標題是你的品牌顏色，代表 _variables.scss 成功。
+          </p>
+
+          {/* 2. 測試你的 _button.scss */}
+          <div className="d-flex justify-content-center gap-3 mt-4">
+            <button className="btn btn-primary btn-lg">主要按鈕</button>
+            <button className="btn btn-outline-secondary btn-lg">
+              次要按鈕
+            </button>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* 3. 測試 Bootstrap Grid 系統 */}
+      <div className="row g-4">
+        <div className="col-md-4">
+          <div className="card h-100 shadow-sm">
+            <div className="card-body text-center">
+              <h5 className="card-title">Grid 測試 1</h5>
+              <p className="card-text text-muted">左側區塊</p>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card h-100 shadow-sm border-primary">
+            <div className="card-body text-center">
+              <h5 className="card-title">Grid 測試 2</h5>
+              <p className="card-text text-muted">中間區塊</p>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card h-100 shadow-sm">
+            <div className="card-body text-center">
+              <h5 className="card-title">Grid 測試 3</h5>
+              <p className="card-text text-muted">右側區塊</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
