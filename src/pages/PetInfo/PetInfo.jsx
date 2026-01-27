@@ -52,7 +52,7 @@ function PetInfo() {
                   {/* 毛孩名稱 */}
                   <div className="pet-name mb-7 mb-24-sm">
                     <label
-                      for="pet-name"
+                      htmlFor="pet-name"
                       className="form-label d-flex align-items-center mb-4"
                     >
                       <p className="icon-dog fs-24 fs-20-sm fs-20-sm me-3"></p>
@@ -87,9 +87,9 @@ function PetInfo() {
                         className="btn-check"
                         name="pet-gender"
                         id="male"
-                        autocomplete="off"
+                        autoComplete="off"
                       />
-                      <label className="btn btn-diet py-3 px-5" for="male">
+                      <label className="btn btn-diet py-3 px-5" htmlFor="male">
                         男生
                       </label>
                       <input
@@ -97,9 +97,12 @@ function PetInfo() {
                         className="btn-check"
                         name="pet-gender"
                         id="female"
-                        autocomplete="off"
+                        autoComplete="off"
                       />
-                      <label className="btn btn-diet py-3 px-5" for="female">
+                      <label
+                        className="btn btn-diet py-3 px-5"
+                        htmlFor="female"
+                      >
                         女生
                       </label>
                     </div>
@@ -133,7 +136,7 @@ function PetInfo() {
                         className="dropdown-menu w-100"
                         aria-labelledby="pet-year"
                       >
-                        <li selected className="dropdown-item">
+                        <li className="dropdown-item">
                           幼犬 ( 出生 ～ 1 歲左右 )
                         </li>
                         <li className="dropdown-item">1 ～ 3 歲</li>
@@ -215,11 +218,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="drumstick"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="drumstick"
+                          htmlFor="drumstick"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>雞肉</p>
@@ -239,11 +242,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="beef"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="beef"
+                          htmlFor="beef"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>牛肉</p>
@@ -263,11 +266,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="ham"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="ham"
+                          htmlFor="ham"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>豬肉</p>
@@ -287,11 +290,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="sheep"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="sheep"
+                          htmlFor="sheep"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>羊肉</p>
@@ -305,29 +308,29 @@ function PetInfo() {
                               <path
                                 d="M6 11V16C6 19.3137 8.68629 22 12 22V22C15.3137 22 18 19.3137 18 16V11"
                                 stroke="#A3A3A3"
-                                stroke-width="2"
+                                strokeWidth="2"
                               />
                               <path
                                 d="M6 12L4 12C2.89543 12 2 12.8954 2 14V14C2 15.1046 2.89543 16 4 16L6 16"
                                 stroke="#A3A3A3"
-                                stroke-width="2"
+                                strokeWidth="2"
                               />
                               <path
                                 d="M18 12L20 12C21.1046 12 22 12.8954 22 14V14C22 15.1046 21.1046 16 20 16L18 16"
                                 stroke="#A3A3A3"
-                                stroke-width="2"
+                                strokeWidth="2"
                               />
                               <path
                                 d="M12 22V19"
                                 stroke="#A3A3A3"
-                                stroke-width="2"
-                                stroke-linecap="round"
+                                strokeWidth="2"
+                                strokeLinecap="round"
                               />
                               <path
                                 d="M10 17L12 18.5L14 17"
                                 stroke="#A3A3A3"
-                                stroke-width="2"
-                                stroke-linecap="round"
+                                strokeWidth="2"
+                                strokeLinecap="round"
                               />
                               <path
                                 d="M12 2L12 1L12 1L12 2ZM16.5293 5.21191L15.5856 5.54277L15.8416 6.27303L16.6128 6.20842L16.5293 5.21191ZM16.7998 5.2002L16.7998 4.2002L16.7997 4.2002L16.7998 5.2002ZM20 8.40039L21 8.40051V8.40039H20ZM16.7998 11.5996L16.7997 12.5996H16.7998V11.5996ZM14.6729 10.7861L15.3385 10.0399L14.7594 9.52325L14.1152 9.95608L14.6729 10.7861ZM12 11.5996L12 12.5996H12V11.5996ZM9.32617 10.7861L9.88399 9.95617L9.23988 9.52326L8.66064 10.0398L9.32617 10.7861ZM7.2002 11.5996L7.2002 12.5996L7.20026 12.5996L7.2002 11.5996ZM4 8.40039L3 8.40039L3 8.40051L4 8.40039ZM7.2002 5.2002L7.20026 4.2002H7.2002V5.2002ZM7.46973 5.21191L7.38654 6.20845L8.15751 6.27281L8.41343 5.54271L7.46973 5.21191ZM12 2V3C13.6558 3 15.0659 4.0603 15.5856 5.54277L16.5293 5.21191L17.473 4.88105C16.6813 2.62305 14.5326 1 12 1V2ZM16.5293 5.21191L16.6128 6.20842C16.6775 6.203 16.7397 6.2002 16.7999 6.2002L16.7998 5.2002L16.7997 4.2002C16.6777 4.2002 16.5595 4.20588 16.4458 4.21541L16.5293 5.21191ZM16.7998 5.2002V6.2002C18.0148 6.2002 19 7.18536 19 8.40039H20H21C21 6.08079 19.1194 4.2002 16.7998 4.2002V5.2002ZM20 8.40039L19 8.40027C18.9999 9.61493 18.015 10.5996 16.7998 10.5996V11.5996V12.5996C19.119 12.5996 20.9997 10.7201 21 8.40051L20 8.40039ZM16.7998 11.5996L16.7999 10.5996C16.2397 10.5996 15.7301 10.3892 15.3385 10.0399L14.6729 10.7861L14.0072 11.5324C14.7469 12.1923 15.7247 12.5995 16.7997 12.5996L16.7998 11.5996ZM14.6729 10.7861L14.1152 9.95608C13.5103 10.3624 12.7844 10.5996 12 10.5996V11.5996V12.5996C13.195 12.5996 14.3072 12.2365 15.2305 11.6162L14.6729 10.7861ZM12 11.5996L12 10.5996C11.215 10.5996 10.4886 10.3625 9.88399 9.95617L9.32617 10.7861L8.76835 11.6161C9.69216 12.237 10.805 12.5996 12 12.5996L12 11.5996ZM9.32617 10.7861L8.66064 10.0398C8.26875 10.3892 7.75959 10.5996 7.20014 10.5996L7.2002 11.5996L7.20026 12.5996C8.2755 12.5995 9.25248 12.1917 9.9917 11.5325L9.32617 10.7861ZM7.2002 11.5996V10.5996C5.98502 10.5996 5.00015 9.61493 5 8.40027L4 8.40039L3 8.40051C3.00028 10.7201 4.88101 12.5996 7.2002 12.5996V11.5996ZM4 8.40039H5C5 7.18536 5.98517 6.2002 7.2002 6.2002V5.2002V4.2002C4.8806 4.2002 3 6.08079 3 8.40039H4ZM7.2002 5.2002L7.20014 6.2002C7.25951 6.2002 7.32138 6.20301 7.38654 6.20845L7.46973 5.21191L7.55291 4.21538C7.44031 4.20598 7.32248 4.2002 7.20026 4.2002L7.2002 5.2002ZM7.46973 5.21191L8.41343 5.54271C8.93302 4.06041 10.3438 3 12 3L12 2L12 1C9.46756 1 7.3177 2.62261 6.52602 4.88112L7.46973 5.21191Z"
@@ -349,11 +352,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="fish"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="fish"
+                          htmlFor="fish"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>魚</p>
@@ -373,11 +376,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="wheat"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="wheat"
+                          htmlFor="wheat"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>穀類 ( 小麥/玉米 )</p>
@@ -397,11 +400,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="milk"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="milk"
+                          htmlFor="milk"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>乳製品</p>
@@ -421,11 +424,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="egg"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="egg"
+                          htmlFor="egg"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>蛋</p>
@@ -445,11 +448,11 @@ function PetInfo() {
                           className="btn-check"
                           name="pet-diet"
                           id="x"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          for="x"
+                          htmlFor="x"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>無</p>
@@ -479,11 +482,11 @@ function PetInfo() {
                           className="btn-check"
                           name="health"
                           id="joint"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="joint"
+                          htmlFor="joint"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_01.png"
@@ -502,11 +505,11 @@ function PetInfo() {
                           className="btn-check"
                           name="health"
                           id="digestion"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="digestion"
+                          htmlFor="digestion"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_02.png"
@@ -525,11 +528,11 @@ function PetInfo() {
                           className="btn-check"
                           name="health"
                           id="skin"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="skin"
+                          htmlFor="skin"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_03.png"
@@ -563,11 +566,11 @@ function PetInfo() {
                           className="btn-check"
                           name="play"
                           id="brainpower"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="brainpower"
+                          htmlFor="brainpower"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_04.png"
@@ -586,11 +589,11 @@ function PetInfo() {
                           className="btn-check"
                           name="play"
                           id="bite"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="bite"
+                          htmlFor="bite"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_05.png"
@@ -609,11 +612,11 @@ function PetInfo() {
                           className="btn-check"
                           name="play"
                           id="walk"
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          for="walk"
+                          htmlFor="walk"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_06.png"

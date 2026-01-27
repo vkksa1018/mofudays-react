@@ -110,7 +110,7 @@ function App() {
                   {/* 毛孩名稱 */}
                   <div className="pet-name mb-7 mb-24-sm">
                     <label
-                      htmlfor="pet-name"
+                      htmlFor="pet-name"
                       className="form-label d-flex align-items-center mb-4"
                     >
                       <p className="icon-dog fs-24 fs-20-sm fs-20-sm me-3"></p>
@@ -147,7 +147,7 @@ function App() {
                         id="male"
                         autoComplete="off"
                       />
-                      <label className="btn btn-diet py-3 px-5" htmlfor="male">
+                      <label className="btn btn-diet py-3 px-5" htmlFor="male">
                         男生
                       </label>
                       <input
@@ -159,7 +159,7 @@ function App() {
                       />
                       <label
                         className="btn btn-diet py-3 px-5"
-                        htmlfor="female"
+                        htmlFor="female"
                       >
                         女生
                       </label>
@@ -280,7 +280,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="drumstick"
+                          htmlFor="drumstick"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>雞肉</p>
@@ -304,7 +304,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="beef"
+                          htmlFor="beef"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>牛肉</p>
@@ -328,7 +328,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="ham"
+                          htmlFor="ham"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>豬肉</p>
@@ -352,7 +352,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="sheep"
+                          htmlFor="sheep"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>羊肉</p>
@@ -414,7 +414,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="fish"
+                          htmlFor="fish"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>魚</p>
@@ -438,7 +438,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="wheat"
+                          htmlFor="wheat"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>穀類 ( 小麥/玉米 )</p>
@@ -462,7 +462,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="milk"
+                          htmlFor="milk"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>乳製品</p>
@@ -486,7 +486,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="egg"
+                          htmlFor="egg"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>蛋</p>
@@ -510,7 +510,7 @@ function App() {
                         />
                         <label
                           className="btn btn-primary btn-diet py-3 px-5"
-                          htmlfor="x"
+                          htmlFor="x"
                         >
                           <div className="d-flex justify-content-between align-items-center">
                             <p>無</p>
@@ -544,7 +544,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="joint"
+                          htmlFor="joint"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_01.png"
@@ -567,7 +567,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="digestion"
+                          htmlFor="digestion"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_02.png"
@@ -590,7 +590,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="skin"
+                          htmlFor="skin"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_03.png"
@@ -628,7 +628,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="brainpower"
+                          htmlFor="brainpower"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_04.png"
@@ -651,7 +651,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="bite"
+                          htmlFor="bite"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_05.png"
@@ -674,7 +674,7 @@ function App() {
                         />
                         <label
                           className="btn btn-health d-flex-sm align-item-center-sm px-5 py-5 p-16-sm"
-                          htmlfor="walk"
+                          htmlFor="walk"
                         >
                           <img
                             src="/assets/images/subscribe/image_btn_06.png"
