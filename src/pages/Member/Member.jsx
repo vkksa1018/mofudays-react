@@ -1,5 +1,0 @@
-function userInfo(){
-    return(
-        
-    )
-}
