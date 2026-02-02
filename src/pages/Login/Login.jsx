@@ -1,18 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import "./Login.scss";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
 
+//圖片載入
+import loginSlider01 from "../../assets/images/common/login-slider-01.png";
+import loginSlider02 from "../../assets/images/common/login-slider-02.png";
+import loginSlider03 from "../../assets/images/common/login-slider-03.png";
+
 export default function Login() {
+  const formRef = useRef(null);
+  const carouselRef = useRef(null);
+  const [wasValidated, setWasValidated] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(() => {
+    if (!carouselRef.current) return;
+
+    const instance = bootstrap.Carousel.getOrCreateInstance(
+      carouselRef.current,
+      {
+        interval: 3000,
+        ride: "carousel",
+        pause: false, // 可選：不要 hover 暫停
+        touch: true,
+        wrap: true,
+      },
+    );
+
+    instance.cycle();
+
+    return () => instance.dispose(); // 切頁時清掉，避免重複綁定
+  }, []);
+
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
-        <Announcement />
+        {/* <Announcement /> */}
 
         <div className="container login-section py-9">
           <div className="split-card overflow-hidden">
@@ -23,11 +51,12 @@ export default function Login() {
                   id="carouselExampleInterval"
                   className="carousel slide"
                   data-bs-ride="carousel"
+                  ref={carouselRef}
                 >
                   <div className="carousel-indicators">
                     <button
                       type="button"
-                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-target="#carouselExampleInterval"
                       data-bs-slide-to="0"
                       className="active"
                       aria-current="true"
@@ -35,13 +64,13 @@ export default function Login() {
                     ></button>
                     <button
                       type="button"
-                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-target="#carouselExampleInterval"
                       data-bs-slide-to="1"
                       aria-label="Slide 2"
                     ></button>
                     <button
                       type="button"
-                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-target="#carouselExampleInterval"
                       data-bs-slide-to="2"
                       aria-label="Slide 3"
                     ></button>
@@ -52,7 +81,7 @@ export default function Login() {
                       data-bs-interval="10000"
                     >
                       <img
-                        src="/assets/images/common/login-slider-01.png"
+                        src={loginSlider01}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-01"
                       />
@@ -62,14 +91,14 @@ export default function Login() {
                       data-bs-interval="2000"
                     >
                       <img
-                        src="/assets/images/common/login-slider-02.png"
+                        src={loginSlider02}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-02"
                       />
                     </div>
                     <div className="carousel-item h-100">
                       <img
-                        src="/assets/images/common/login-slider-03.png"
+                        src={loginSlider03}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-03"
                       />
@@ -106,8 +135,8 @@ export default function Login() {
                 <div className="login-form">
                   <form
                     ref={formRef}
-                    className={`needs-validattion ${wasValidated ? "was-validated" : ""}`}
-                    novalidate
+                    className={`needs-validation ${wasValidated ? "was-validated" : ""}`}
+                    noValidate
                   >
                     <div className="text-center mb-7">
                       <h2 className="text-brown-500">會員登入</h2>
@@ -165,7 +194,7 @@ export default function Login() {
                         />
                         <label
                           className="form-check-label text-brown-500"
-                          for="rememberme"
+                          htmlFor="rememberme"
                         >
                           記住我
                         </label>
@@ -205,7 +234,7 @@ export default function Login() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

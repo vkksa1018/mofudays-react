@@ -1,10 +1,17 @@
 import { useRef, useState } from "react";
-src / pages / Login / Login.jsx;
+import "./Signup.scss";
+import axios from "axios";
+import * as bootstrap from "bootstrap";
 
 // 這三個對應你的 EJS include
-import HeaderLogout from "./layout/HeaderLogout";
-import Announcement from "./layout/Announcement";
-import Footer from "./layout/Footer";
+// import Header from "./app/layouts/components/Header/Header";
+// import Announcement from "./layout/Announcement";
+// import Footer from "./app/layouts/components/Footer/Footer";
+
+//圖片載入
+import loginSlider01 from "../../assets/images/common/login-slider-01.png";
+import loginSlider02 from "../../assets/images/common/login-slider-02.png";
+import longinSlider03 from "../../assets/images/common/login-slider-03.png";
 
 export default function Signup() {
   const formRef = useRef(null);
@@ -54,16 +61,16 @@ export default function Signup() {
 
     if (!ok) return;
 
-    // ✅ 表單都合法：你在這裡串接註冊 API
+    // 表單都合法：你在這裡串接註冊 API
     // console.log(formData);
   };
 
   return (
     <>
-      <HeaderLogout />
+      {/* <Header /> */}
 
       <main>
-        <Announcement />
+        {/* <Announcement /> */}
 
         <div className="container login-section pt-9 pb-0 pt-md-9 pb-md-9 px-0">
           <div className="split-card overflow-hidden">
@@ -104,7 +111,7 @@ export default function Signup() {
                       data-bs-interval="10000"
                     >
                       <img
-                        src="/assets/images/common/login-slider-01.png"
+                        src={loginSlider01}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-01"
                       />
@@ -114,14 +121,14 @@ export default function Signup() {
                       data-bs-interval="2000"
                     >
                       <img
-                        src="/assets/images/common/login-slider-02.png"
+                        src={loginSlider02}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-02"
                       />
                     </div>
                     <div className="carousel-item h-100">
                       <img
-                        src="/assets/images/common/login-slider-03.png"
+                        src={longinSlider03}
                         className="d-block w-100 h-100 carousel-img"
                         alt="login-slider-03"
                       />
@@ -370,7 +377,7 @@ export default function Signup() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
