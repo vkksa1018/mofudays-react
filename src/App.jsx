@@ -1,5 +1,16 @@
 import React from "react";
 
+// router 2026/2/2 by 納森
+// import { RouterProvider } from "react-router-dom";
+// import { router } from "./router";
+// function App(){
+//     return (
+//         <>
+//             <RouterProvider router={router}/>
+//         </>
+//     )
+// }
+
 function App() {
   return (
     <div className="container py-5">
