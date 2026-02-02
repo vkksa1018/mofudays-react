@@ -60,11 +60,12 @@
 
 import React from "react";
 // import Header from "./app/layouts/components/Header";
-// import Footer from "./app/layouts/components/Footer";
 
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Member from "./pages/Member/Member";
+
+import Footer from "./app/layouts/components/Footer/Footer";
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
       <Signup />
       <Login />
       <Member />
+      <Footer />
     </>
   );
 }

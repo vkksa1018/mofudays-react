@@ -1,3 +1,11 @@
+import { useState } from "react";
+import "./Footer.scss";
+import axios from "axios";
+import * as bootstrap from "bootstrap";
+
+//圖片載入
+import footerLogo from "../../../../assets/images/footer/footer-logo.png";
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -26,11 +34,7 @@ function FooterLeft() {
       <div className="col-12 col-md-6 d-flex flex-column flex-md-row align-items-center gap-3">
         <div className="d-flex align-items-center gap-2 mb-0">
           <a href="index.html">
-            <img
-              src="/assets/images/footer/footer-logo.png"
-              alt="logo"
-              className="footer-logo"
-            />
+            <img src={footerLogo} alt="logo" className="footer-logo" />
           </a>
         </div>
 
