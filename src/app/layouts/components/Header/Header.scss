@@ -149,12 +149,12 @@ header .navbar {
   }
 }
 
-.cart-btn:hover svg {
+header .cart-btn:hover svg {
   transform: scale(1.1);
 }
 
-.cart-btn:hover svg path,
-.cart-btn:hover svg circle {
+header .cart-btn:hover svg path,
+header .cart-btn:hover svg circle {
   stroke: white;
 }
 

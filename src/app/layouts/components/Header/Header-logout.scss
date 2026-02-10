@@ -5,6 +5,7 @@ header .login-btn {
   padding: 8.5px 32px;
   background-color: $primary-500;
   color: white;
+  border: 2px solid transparent;
 }
 
 @media (min-width: 768px) {
@@ -13,11 +14,33 @@ header .login-btn {
     border: solid 2px $primary-500;
     background-color: transparent;
     color: $primary-500;
+    border-color: $primary-500;
+  }
+
+  header .login-btn:hover {
+    border: 2px solid $primary-500;
+    background-color: $primary-500;
+    color: white;
   }
 }
 
-header .login-btn:hover {
-  border: 2px solid $primary-500;
-  background-color: $primary-500;
-  color: white;
-}
+// .login-btn {
+//   padding: 8.5px 32px;
+//   background-color: $primary-500;
+//   color: white;
+// }
+
+// @media (min-width: 768px) {
+//   .login-btn {
+//     padding: 8.5px 32px;
+//     border: solid 2px $primary-500;
+//     background-color: transparent;
+//     color: $primary-500;
+//   }
+// }
+
+// .login-btn:hover {
+//   border: 2px solid $primary-500;
+//   background-color: $primary-500;
+//   color: white;
+// }
