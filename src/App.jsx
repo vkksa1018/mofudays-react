@@ -67,6 +67,17 @@ import Member from "./pages/Member/Member";
 
 import Footer from "./app/layouts/components/Footer/Footer";
 
+// router 2026/2/2 by 納森
+// import { RouterProvider } from "react-router-dom";
+// import { router } from "./router";
+// function App(){
+//     return (
+//         <>
+//             <RouterProvider router={router}/>
+//         </>
+//     )
+// }
+
 function App() {
   return (
     <>
