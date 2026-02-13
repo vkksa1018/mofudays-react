@@ -1,12 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Carousel } from "bootstrap";
 
+// --- 圖片資源統一管理區 ---
+import imgShiba from "../../../assets/images/member/member_shiba.png";
+import imgChihwahwa from "../../../assets/images/member/member_chihwahwa.png";
+import imgPoodle from "../../../assets/images/member/member_poodle.png";
+import imgShapper from "../../../assets/images/member/member_shapper.png";
+import imgPug from "../../../assets/images/member/member_pug.png";
+import imgMix from "../../../assets/images/member/member_mix.png";
+import imgBomei from "../../../assets/images/member/member_bomei.png";
+import imgMix1 from "../../../assets/images/member/member_mix_1.jpg";
+import imgSinglePaw from "../../../assets/images/member/footprint_patten 2.png";
+
 /** ✅ 卡片資料改成常數（component 外） */
 export const UNBOX_CARDS = [
   {
     name: "豆豆",
     meta: "柴犬 5 歲",
-    img: "/assets/images/member/member_shiba.png",
+    img: imgShiba,
     imgAlt: "豆豆",
     backTitle: "豆豆",
     backText:
@@ -15,7 +26,7 @@ export const UNBOX_CARDS = [
   {
     name: "Haru",
     meta: "哈士娃 1 歲",
-    img: "/assets/images/member/member_chihwahwa.png",
+    img: imgChihwahwa,
     imgAlt: "Haru",
     frontImgClass: "object-position-right-center",
     pawClass: "object-position-center",
@@ -26,7 +37,7 @@ export const UNBOX_CARDS = [
   {
     name: "可可",
     meta: "貴賓犬 2 歲",
-    img: "/assets/images/member/member_poodle.png",
+    img: imgPoodle,
     imgAlt: "可可",
     backTitle: "可可",
     backText:
@@ -35,7 +46,7 @@ export const UNBOX_CARDS = [
   {
     name: "奶昔",
     meta: "邊境牧羊犬 2 歲",
-    img: "/assets/images/member/member_shapper.png",
+    img: imgShapper,
     imgAlt: "奶昔",
     backTitle: "奶昔",
     backText:
@@ -44,7 +55,7 @@ export const UNBOX_CARDS = [
   {
     name: "布丁",
     meta: "巴哥犬 2 歲",
-    img: "/assets/images/member/member_pug.png",
+    img: imgPug,
     imgAlt: "布丁",
     backTitle: "布丁",
     backText:
@@ -53,7 +64,7 @@ export const UNBOX_CARDS = [
   {
     name: "阿福",
     meta: "米克斯 4 歲",
-    img: "/assets/images/member/member_mix.png",
+    img: imgMix,
     imgAlt: "阿福",
     backTitle: "阿福",
     backText:
@@ -62,7 +73,7 @@ export const UNBOX_CARDS = [
   {
     name: "雪球 & 雪寶",
     meta: "博美 3 歲 / 3歲",
-    img: "/assets/images/member/member_bomei.png",
+    img: imgBomei,
     imgAlt: "雪球&雪寶",
     backTitle: "雪球(右) & 雪寶(左)",
     backText:
@@ -71,7 +82,7 @@ export const UNBOX_CARDS = [
   {
     name: "皮蛋",
     meta: "米克斯 7 歲",
-    img: "/assets/images/member/member_mix_1.jpg",
+    img: imgMix1,
     imgAlt: "皮蛋",
     backTitle: "皮蛋",
     backText:
@@ -155,7 +166,10 @@ export default function UnboxCarousel() {
 
       <div className="carousel-inner">
         {slides.map((group, slideIdx) => (
-          <div key={slideIdx} className={`carousel-item ${slideIdx === 0 ? "active" : ""}`}>
+          <div
+            key={slideIdx}
+            className={`carousel-item ${slideIdx === 0 ? "active" : ""}`}
+          >
             <div className="row g-4">
               {group.map((card) => (
                 <UnboxFlipCard key={card.name} card={card} />
@@ -165,12 +179,22 @@ export default function UnboxCarousel() {
         ))}
       </div>
 
-      <button className="carousel-control-prev" type="button" data-bs-target="#petUnboxCarousel" data-bs-slide="prev">
+      <button
+        className="carousel-control-prev"
+        type="button"
+        data-bs-target="#petUnboxCarousel"
+        data-bs-slide="prev"
+      >
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">上一頁</span>
       </button>
 
-      <button className="carousel-control-next" type="button" data-bs-target="#petUnboxCarousel" data-bs-slide="next">
+      <button
+        className="carousel-control-next"
+        type="button"
+        data-bs-target="#petUnboxCarousel"
+        data-bs-slide="next"
+      >
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">下一頁</span>
       </button>
@@ -185,7 +209,11 @@ function UnboxFlipCard({ card }) {
         <div className="flip-inner">
           <div className="flip-face flip-front">
             <div className="p-1">
-              <img src={card.img} className={`card-img-top ${card.frontImgClass ?? ""}`.trim()} alt={card.imgAlt} />
+              <img
+                src={card.img}
+                className={`card-img-top ${card.frontImgClass ?? ""}`.trim()}
+                alt={card.imgAlt}
+              />
             </div>
 
             <div className="d-flex justify-content-between p-16">
@@ -195,7 +223,7 @@ function UnboxFlipCard({ card }) {
               </div>
 
               <img
-                src="/assets/images/member/footprint_patten 2.png"
+                src={imgSinglePaw}
                 alt="小腳印"
                 className={`img-single-paw ${card.pawClass ?? ""}`.trim()}
               />

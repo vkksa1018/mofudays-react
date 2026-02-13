@@ -1,6 +1,10 @@
 import machiDays from "../../../assets/images/memberEvent/毛孩麻吉日主視覺.png";
 // scss載入
 import "./memberEvent.scss";
+import eventSurprise from "../../../assets/images/memberEvent/event_surprise.png";
+import eventSurprise1 from "../../../assets/images/memberEvent/event_surprise_1.png";
+import eventSurprise2 from "../../../assets/images/memberEvent/event_surprise_2.png";
+import eventSurprise3 from "../../../assets/images/memberEvent/event_surprise_3.png";
 
 export default function MemberEvent1() {
   return (
@@ -42,7 +46,7 @@ export default function MemberEvent1() {
               <div className="col d-flex flex-column align-items-center mb-md-3 fade-up">
                 <div className="feature-circle mb-24">
                   <img
-                    src="/assets/images/member_activities/event_surprise.png"
+                    src={eventSurprise}
                     className="img-hover-bigger"
                     alt="驚喜小禮示意圖"
                   />
@@ -54,7 +58,7 @@ export default function MemberEvent1() {
               <div className="col d-flex flex-column align-items-center mb-md-3 fade-up">
                 <div className="feature-circle text-center mb-24">
                   <img
-                    src="/assets/images/member_activities/event_surprise_1.png"
+                    src={eventSurprise1}
                     className="img-hover-bigger"
                     alt="打卡抽獎示意圖"
                   />
@@ -66,7 +70,7 @@ export default function MemberEvent1() {
               <div className="col d-flex flex-column align-items-center fade-up">
                 <div className="feature-circle mb-24">
                   <img
-                    src="/assets/images/member_activities/event_surprise_2.png"
+                    src={eventSurprise2}
                     alt="互動闖關示意圖"
                     className="img-hover-bigger"
                   />
@@ -78,7 +82,7 @@ export default function MemberEvent1() {
               <div className="col d-flex flex-column align-items-center fade-up">
                 <div className="feature-circle mb-24">
                   <img
-                    src="/assets/images/member_activities/event_surprise_3.png"
+                    src={eventSurprise3}
                     className="img-hover-bigger"
                     alt="小卡印製示意圖"
                   />

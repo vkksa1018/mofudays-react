@@ -4,7 +4,7 @@ const AnnouncementButton = ({ isLoggedIn }) => {
   const navigate = useNavigate();
 
   const config = isLoggedIn
-    ? { text: "會員中心", link: "/member" }
+    ? { text: "會員中心", link: "/usercenter" }
     : { text: "立即註冊", link: "/signup" };
 
   const handleNavigation = () => {

@@ -1,8 +1,9 @@
-
 // scss載入
 import "./memberEvent.scss";
+import commBanner from "../../../assets/images/member/theme_event_2.png";
+// import speakerAvatar from "../../../assets/images/memberEvent/pet_communicator.png";
 
-export default function MemberActivity2() {
+export default function MemberEvent2() {
   return (
     <main className="member-activity-1 my-5 my-lg-6">
       <div className="container">
@@ -11,7 +12,7 @@ export default function MemberActivity2() {
           <section className="section-spacer">
             <div className="hero-banner-1 p-3 p-md-4">
               <img
-                src="/assets/images/member_activities/毛孩溝通教室主視覺.png"
+                src={commBanner}
                 alt="毛孩溝通教室-活動主視覺"
                 className="hero-img rounded"
               />
@@ -20,7 +21,9 @@ export default function MemberActivity2() {
 
           {/* 活動 slogan */}
           <section className="section-spacer mb-80 text-center auto-show">
-            <h1 className="h1 mb-24 text-brown-500">傾聽牠的心聲，理解毛孩的世界</h1>
+            <h1 className="h1 mb-24 text-brown-500">
+              傾聽牠的心聲，理解毛孩的世界
+            </h1>
 
             <h4 className="h4 text-primary-500 fw-500 mb-8">
               想知道毛孩為什麼突然不吃飯？為什麼牠害怕某種聲音？
@@ -30,7 +33,9 @@ export default function MemberActivity2() {
               也許你曾經試過動物溝通，卻沒有看到效果，覺得只是“花錢繳學費”。
             </h4>
 
-            <p className="p1 text-neutral-500 mb-1">那麼，這次的課程你絕對不能錯過！</p>
+            <p className="p1 text-neutral-500 mb-1">
+              那麼，這次的課程你絕對不能錯過！
+            </p>
 
             <p className="p1 text-neutral-500 mb-3">
               我們邀請了資深的狗兒行為諮詢師 - PAPA (楊森僅) 老師。
@@ -65,7 +70,9 @@ export default function MemberActivity2() {
                     <li>著作：〈理解牠的語言〉專欄作者</li>
                   </ul>
 
-                  <p className="p1">課程包含：基礎概念、日常觀察、建立安全感、常見行為問題拆解。</p>
+                  <p className="p1">
+                    課程包含：基礎概念、日常觀察、建立安全感、常見行為問題拆解。
+                  </p>
                 </div>
               </div>
             </div>
@@ -85,10 +92,12 @@ export default function MemberActivity2() {
                     <strong>13:00–13:20</strong> 報到入場
                   </li>
                   <li>
-                    <strong>13:20–14:10</strong> 課程一：理解毛孩的「情緒與訊號」
+                    <strong>13:20–14:10</strong>{" "}
+                    課程一：理解毛孩的「情緒與訊號」
                   </li>
                   <li>
-                    <strong>14:15–15:00</strong> 課程二：日常互動建立安全感（含示範）
+                    <strong>14:15–15:00</strong>{" "}
+                    課程二：日常互動建立安全感（含示範）
                   </li>
                   <li>
                     <strong>15:05–15:45</strong> Q&A 與案例討論
@@ -111,19 +120,26 @@ export default function MemberActivity2() {
                       <h3 className="h3 mb-16">活動時間</h3>
 
                       <p className="mb-8 fw-500 ps-4">
-                        <strong className="fw-700">日期</strong>：2025 年 11 月 1 日（六）013:30-16:00
+                        <strong className="fw-700">日期</strong>：2025 年 11 月
+                        1 日（六）013:30-16:00
                       </p>
 
                       <p className="mb-8 fw-500 ps-4">
-                        <strong className="fw-700">地點</strong>：IEAT國際會議中心2F（台北市中山區松江路350號2F-咖啡空間）
+                        <strong className="fw-700">地點</strong>
+                        ：IEAT國際會議中心2F（台北市中山區松江路350號2F-咖啡空間）
                         {/* 可加地圖連結 */}
-                        <a href="#" className="link-primary ms-1" onClick={(e) => e.preventDefault()}>
+                        <a
+                          href="#"
+                          className="link-primary ms-1"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           看地圖
                         </a>
                       </p>
 
                       <p className="fw-500 ps-4">
-                        <strong className="fw-700">報名方式</strong> : 免費參與，額滿為止!
+                        <strong className="fw-700">報名方式</strong> :
+                        免費參與，額滿為止!
                       </p>
                     </div>
 
@@ -138,7 +154,9 @@ export default function MemberActivity2() {
                         </a>
                         <span className="cta-badge"> 限額 30 人 ! </span>
                       </div>
-                      <div className="cta-warning mt-2">名額有限，沒有候補喔!</div>
+                      <div className="cta-warning mt-2">
+                        名額有限，沒有候補喔!
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -148,7 +166,9 @@ export default function MemberActivity2() {
 
           {/* FAQ */}
           <section className="section-spacer">
-            <h2 className="h1 mb-28 text-center text-primary-500 fade-up">常見問題</h2>
+            <h2 className="h1 mb-28 text-center text-primary-500 fade-up">
+              常見問題
+            </h2>
 
             <div className="row justify-content-center">
               <div className="col-lg-10">
@@ -174,7 +194,8 @@ export default function MemberActivity2() {
                       data-bs-parent="#faqAccordion"
                     >
                       <div className="accordion-body">
-                        A: 這次的講座以教學與互動示範為主，因此現場不開放毛孩入場，以免毛孩因陌生環境感到緊張或受驚。建議您攜帶毛孩的照片或影片，方便在互動練習中使用。
+                        A:
+                        這次的講座以教學與互動示範為主，因此現場不開放毛孩入場，以免毛孩因陌生環境感到緊張或受驚。建議您攜帶毛孩的照片或影片，方便在互動練習中使用。
                       </div>
                     </div>
                   </div>

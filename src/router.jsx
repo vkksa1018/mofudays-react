@@ -12,15 +12,19 @@ import Plan from "./pages/FrontEndLayout/Plan/Plan";
 import Checkout from "./pages/FrontEndLayout/Checkout/Checkout";
 import Finish from "./pages/FrontEndLayout/Finish/Finish";
 import UserCenter from "./pages/FrontEndLayout/UserCenter/UserCenter";
-import OrderList from "./pages/FrontEndLayout/OrderList/OrderList";
 import PetInfo from "./pages/FrontEndLayout/PetInfo/PetInfo";
-// import Event from "./pages/Event/Event";
+
+//usercenter
+import UserProfile from "./pages/FrontEndLayout/UserCenter/UserProfile";
+import OrderLists from "./pages/FrontEndLayout/UserCenter/OrderLists";
+import MemberExclusives from "./pages/FrontEndLayout/UserCenter/MemberExclusive";
+import MemberEvent1 from "./pages/FrontEndLayout/UserCenter/MemberEvent1";
+import MemberEvent2 from "./pages/FrontEndLayout/UserCenter/MemberEvent2";
+import MemberEvent3 from "./pages/FrontEndLayout/UserCenter/MemberEvent3";
 
 // Auth pages（ 會員/後台共用同一個 Login 頁面 ）
 import Login from "./pages/FrontEndLayout/Login/Login";
 import Signup from "./pages/FrontEndLayout/Signup/Signup";
-
-import Member from "./pages/FrontEndLayout/Member/Member";
 
 // Admin pages（先做 placeholder 也行）
 // 先放 Dashboard 占位，後續再補其他後台頁
@@ -96,19 +100,20 @@ export const router = createHashRouter([
           </RequireAuth>
         ),
         children: [
-          { index: true, element: <Navigate to="orders" replace /> },
-          { path: "orders", element: <OrderList /> },
-          { path: "activities", element: <Event /> },
+          // 預設進入會員中心時導向「會員資料」
+          { index: true, element: <Navigate to="profile" replace /> },
+
+          // 三個主要 Tab 頁面
+          { path: "profile", element: <UserProfile /> },
+          { path: "orders", element: <OrderLists /> },
+          { path: "activities", element: <MemberExclusives /> },
         ],
-        //暫時移除權限檢查 by James
-        // path: "member",
-        // element: <Member />,
-        // children: [
-        //   { index: true, element: <Navigate to="orders" replace /> },
-        //   { path: "orders", element: <OrderList /> },
-        //   { path: "activities", element: <Event /> },
-        // ],
       },
+
+      // 三個活動詳情頁
+      { path: "member-event-1", element: <MemberEvent1 /> },
+      { path: "member-event-2", element: <MemberEvent2 /> },
+      { path: "member-event-3", element: <MemberEvent3 /> },
     ],
   },
 

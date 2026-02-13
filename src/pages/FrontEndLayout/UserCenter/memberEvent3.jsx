@@ -1,8 +1,12 @@
-
 // scss載入
 import "./memberEvent.scss";
+import luckyBagBanner from "../../../assets/images/member/theme_event_3.png";
+// import step1 from "../../../assets/images/memberEvent/step_item_1.png";
+// import step2 from "../../../assets/images/memberEvent/step_item_2.png";
+// import step3 from "../../../assets/images/memberEvent/step_item_3.png";
+// import step4 from "../../../assets/images/memberEvent/step_item_4.png";
 
-export default function MemberActivity3() {
+export default function MemberEvent3() {
   return (
     <main className="member-activity-1 my-5 my-lg-6">
       <div className="container">
@@ -11,13 +15,12 @@ export default function MemberActivity3() {
           <section className="section-spacer">
             <div className="hero-banner-2 p-3 p-md-4">
               <img
-                src="/assets/images/member_activities/毛孩福袋交換日主視覺.png"
+                src={luckyBagBanner}
                 alt="毛孩福袋交換日-活動主視覺"
                 className="hero-img rounded"
               />
             </div>
           </section>
-
         </div>
       </div>
 
@@ -25,7 +28,9 @@ export default function MemberActivity3() {
       <div className="row bg-yellow">
         <div className="container">
           <section className="section-spacer my-40 text-center auto-show-1">
-            <h1 className="h1 mb-24 text-brown-500">用一份驚喜，交換毛孩的快樂！</h1>
+            <h1 className="h1 mb-24 text-brown-500">
+              用一份驚喜，交換毛孩的快樂！
+            </h1>
             <h3 className="h3 fw-500 mb-20 text-primary-500">
               每年毛日和都會舉辦一次「毛孩福袋互換」活動，參加者將獲得一份隨機搭配的驚喜福袋！
             </h3>
@@ -40,7 +45,9 @@ export default function MemberActivity3() {
         <div className="row">
           {/* 參與流程 */}
           <section className="section-spacer bottom-lined">
-            <h2 className="step-section-title mb-40 text-center auto-show-1">參與流程</h2>
+            <h2 className="step-section-title mb-40 text-center auto-show-1">
+              參與流程
+            </h2>
 
             <div className="row row-cols-2 row-cols-md-4 g-4">
               <div className="col d-flex flex-column">
@@ -124,7 +131,9 @@ export default function MemberActivity3() {
                       <ul>
                         <li className="mb-8">本活動僅限毛日和會員登記</li>
                         <li className="mb-8">每人限額登記 1 份福袋</li>
-                        <li className="mb-8">內容物經篩選，不含過期或危險物品</li>
+                        <li className="mb-8">
+                          內容物經篩選，不含過期或危險物品
+                        </li>
                         <li className="mb-8">寄送前會再次檢查包裝安全。</li>
                         <li className="mb-8">
                           主辦單位保留活動大綱異動之權利，更新資訊以活動網站內容為主。
@@ -178,7 +187,9 @@ export default function MemberActivity3() {
                       data-bs-parent="#faqAccordion"
                     >
                       <div className="accordion-body">
-                        A: 可以！您的毛孩資料(包含敏感源) 以記錄於系統會員資料中! 如果您還有其他想補充的資訊都可以在登記表單中的備註欄為告訴我們，我們會盡量為您配對適合的福袋哦!
+                        A: 可以！您的毛孩資料(包含敏感源)
+                        以記錄於系統會員資料中!
+                        如果您還有其他想補充的資訊都可以在登記表單中的備註欄為告訴我們，我們會盡量為您配對適合的福袋哦!
                       </div>
                     </div>
                   </div>
@@ -242,4 +253,3 @@ export default function MemberActivity3() {
     </main>
   );
 }
-
