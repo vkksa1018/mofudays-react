@@ -33,28 +33,37 @@ import AdminDashboard from "./pages/BackEndLayout/Dashboard/Dashboard";
 // 404
 import NotFound from "./layout/NotFound";
 
+//test
+import TestAuthPage from "./pages/Test/TestAuthPage";
+
 // auth hooks
 import { useAuth } from "./features/auth/hooks";
 
 // 前台會員權限：沒登入 => 去 /login
 function RequireAuth({ children }) {
-  const { isAuthed } = useAuth();
+  const { isAuthed, isLoading } = useAuth();
 
-  // 如果沒登入，強制跳轉到登入頁，並記錄原本想去的頁面 (replace: true)
+  if (isLoading) {
+    return <div>載入中...</div>;
+  }
+
   return isAuthed ? children : <Navigate to="/login" replace />;
 }
 
 /** 後台管理員權限：沒登入或不是 admin -> 去 /admin/login */
 function RequireAdmin({ children }) {
-  const { isAuthed, user } = useAuth();
-  const isAdmin = Boolean(user?.role === "admin");
-  return isAuthed && isAdmin ? (
-    children
-  ) : (
-    <Navigate to="/admin/login" replace />
-  );
-}
+  const { isAuthed, user, isLoading } = useAuth();
 
+  // 關鍵：如果還在讀取中，先回傳 Loading 畫面，不要執行 Navigate
+  if (isLoading) {
+    return <div>權限驗證中...</div>; // 或者放你的 Loading Spinner
+  }
+
+  const isAdmin = Boolean(user?.role === "admin");
+
+  // 只有在確定讀取完畢，且不是管理員時才跳轉
+  return isAuthed && isAdmin ? children : <Navigate to="/login" replace />;
+}
 export const router = createHashRouter([
   // 前台（ FrontLayout ）
   {
@@ -145,6 +154,10 @@ export const router = createHashRouter([
       // { path: "products", element: <AdminProducts /> },
       // { path: "orders", element: <AdminOrders /> },
     ],
+  },
+  {
+    path: "/test",
+    element: <TestAuthPage />,
   },
 
   // 404
