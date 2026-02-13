@@ -1,32 +1,19 @@
-import "../Finish/Finish.scss";
-import ProgressBar2 from "../Subscribe/ProgressBar2.jsx";
+import "./Checkout.scss";
+import ProgressBar2 from "../Subscribe/ProgressBar2";
 
-import finishIllustration from "../../assets/images/subscribe/Illustration-finish.png";
-import balloonIllustration from "../../assets/images/subscribe/Illustration-balloon.png";
-
-function Finish() {
+function Checkout() {
   return (
     <>
-      <main className="finish py-11 pt-80-sm pb-0-sm">
+      <main className="checkout py-11 pt-80-sm pb-0-sm">
         <div className="container">
           {/* 標題進度條 */}
           <ProgressBar2 />
 
-          {/* 訂單內容卡片 */}
+          {/* 訂單明細卡片 */}
           <div className="card-bg py-9 px-110 px-12-sm mb-6 mb-0-sm">
             <div className="px-16-sm">
-              {/* 感謝訂閱文字 */}
-              <div className="fs-14-sm text-center-sm px-12-sm mb-6 mb-24-sm">
-                <p className="text-brown-300 mb-1">
-                  親愛的客戶您好，您的訂單我們已經收到，感謝您訂閱毛日盒!
-                </p>
-                <p className="text-brown-300">
-                  以下為您的訂購明細，記得拍下毛孩開箱照片與大家分享唷🥳
-                </p>
-              </div>
-
               {/* 訂單明細 */}
-              <div className="row-table mb-6 mb-24-sm">
+              <div className="row-table mb-6">
                 {/* 表格 */}
                 <div className="col-table-10">
                   <h5 className="mb-5 ls-5 text-center-sm">訂單明細</h5>
@@ -148,34 +135,118 @@ function Finish() {
                 </div>
               </div>
 
-              {/* 說明文字 */}
-              <p className="fs-14-sm text-center px-12-sm mb-48-sm">
-                您可到
-                <a href="./member.html" className="text-primary-500">
-                  訂單查詢
-                </a>
-                查看訂購紀錄，如有任何問題或其他意見，歡迎
-                <a
-                  href="mailto:service.maorihe@gmail.com"
-                  className="text-primary-500"
-                >
-                  聯繫我們
-                </a>
-                ，謝謝!
-              </p>
-            </div>
+              {/* 結帳資訊 */}
+              <div className="row-table mb-48-sm">
+                <div className="col-table-10">
+                  <h5 className="mb-5 ls-5 text-center-sm">結帳資訊</h5>
 
-            {/* 定位圖 */}
-            <img
-              src={finishIllustration}
-              alt="完成訂閱插畫"
-              className="finish-illustration d-none-sm"
-            />
-            <img
-              src={balloonIllustration}
-              alt="氣球插畫"
-              className="balloon-illustration d-none-sm"
-            />
+                  {/* 個人資訊 */}
+                  <div className="personal-info">
+                    <div className="table-title-bg px-5 py-2 mb-2">
+                      <p>輸入你的個人資訊</p>
+                    </div>
+                    <div className="row g-2 mb-5 checkout-form">
+                      <div className="col-6 col-12-sm px-4-sm">
+                        <input
+                          type="name"
+                          className="form-control"
+                          id="checkout-name"
+                          placeholder="姓名"
+                        />
+                      </div>
+                      <div className="col-6 col-12-sm px-4-sm">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="checkout-address"
+                          placeholder="地址"
+                        />
+                      </div>
+                      <div className="col-6 col-12-sm px-4-sm">
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="checkout-tel"
+                          placeholder="電話"
+                        />
+                      </div>
+                      <div className="col-6 col-12-sm px-4-sm">
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="checkout-email"
+                          placeholder="電子郵件"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 付款方式 */}
+                  <div className="payment-method">
+                    <div className="table-title-bg px-5 py-2 mb-2">
+                      <p>選擇付款方式</p>
+                    </div>
+
+                    <div
+                      role="group"
+                      aria-label="Basic radio toggle button group"
+                      className="mb-5 row g-2"
+                    >
+                      {/* 信用卡 */}
+                      <div className="col-3 col-6-sm px-4-sm me-2 me-0-sm">
+                        <input
+                          type="radio"
+                          className="btn-check w-100"
+                          name="payment-method"
+                          id="credit-card"
+                          autoComplete="off"
+                        />
+                        <label
+                          className="btn btn-primary btn-diet px-0 py-3 w-100"
+                          htmlFor="credit-card"
+                        >
+                          信用卡
+                        </label>
+                      </div>
+
+                      {/* LINE PAY */}
+                      <div className="col-3 col-6-sm px-4-sm">
+                        <input
+                          type="radio"
+                          className="btn-check"
+                          name="payment-method"
+                          id="LINE-PAY"
+                          autoComplete="off"
+                        />
+                        <label
+                          className="btn btn-primary btn-diet px-0 py-3 w-100"
+                          htmlFor="LINE-PAY"
+                        >
+                          LINE Pay
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 訂單備註 */}
+                  <div className="payment-method">
+                    <div className="table-title-bg px-5 py-2 mb-2">
+                      <p>訂單備註</p>
+                    </div>
+
+                    <div className="form-floating">
+                      <textarea
+                        className="form-control px-3 py-5"
+                        placeholder="備註"
+                        id="checkout-remark"
+                        style={{ height: "100px" }}
+                      ></textarea>
+                      <label htmlFor="checkout-remark ps-3">備註</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* 儲存按鈕手機版 */}
             <div className="text-center d-none-min-sm px-5-5-sm">
@@ -183,19 +254,19 @@ function Finish() {
                 <div className="col-6-sm">
                   <a
                     className="btn btn-primary rounded-pill btn-active-white ls-5 fs-18-sm fw-medium-sm px-38-sm"
-                    href="./index.html"
+                    href="./cart.html"
                     role="button"
                   >
-                    返回首頁
+                    回上一步
                   </a>
                 </div>
                 <div className="col-6-sm">
                   <a
                     className="btn btn-primary rounded-pill btn-active ls-5 fs-18-sm fw-medium-sm px-38-sm"
-                    href="./pet-info.html"
+                    href="./finish.html"
                     role="button"
                   >
-                    新增訂單
+                    確認付款
                   </a>
                 </div>
               </div>
@@ -206,17 +277,17 @@ function Finish() {
           <div className="text-center d-none-sm">
             <a
               className="btn btn-primary rounded-pill btn-active-white px-40 me-6"
-              href="./index.html"
+              href="./cart.html"
               role="button"
             >
-              返回首頁
+              回上一步
             </a>
             <a
               className="btn btn-primary rounded-pill btn-active px-40"
-              href="./pet-info.html"
+              href="./finish.html"
               role="button"
             >
-              新增訂單
+              確認付款
             </a>
           </div>
         </div>
@@ -225,4 +296,4 @@ function Finish() {
   );
 }
 
-export default Finish;
+export default Checkout;

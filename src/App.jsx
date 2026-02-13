@@ -13,11 +13,11 @@
 
 // export default App;
 
-import Petinfo from "./pages/PetInfo/PetInfo.jsx";
-import Plan from "./pages/Plan/Plan.jsx";
-import Cart from "./pages/Cart/Cart.jsx";
-import Checkout from "./pages/Checkout/Checkout.jsx";
-import Finish from "./pages/Finish/Finish.jsx";
+import Petinfo from "./pages/FrontEndLayout/PetInfo/PetInfo.jsx";
+import Plan from "./pages/FrontEndLayout/Plan/Plan.jsx";
+import Cart from "./pages/FrontEndLayout/Cart/Cart.jsx";
+import Checkout from "./pages/FrontEndLayout/Checkout/Checkout.jsx";
+import Finish from "./pages/FrontEndLayout/Finish/Finish.jsx";
 
 function App() {
   return (

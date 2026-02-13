@@ -1,4 +1,4 @@
-import "../Cart/Cart.scss";
+import "./Cart.scss";
 import ProgressBar2 from "../Subscribe/ProgressBar2.jsx";
 
 import productImg1 from "../../assets/images/subscribe/product-img-01.png";
