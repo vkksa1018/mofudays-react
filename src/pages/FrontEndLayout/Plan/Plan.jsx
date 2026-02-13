@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./Plan.scss";
 import ProgressBar1 from "../Subscribe/ProgressBar1.jsx";
 import PlanCard from "../Subscribe/PlanCard.jsx";
@@ -126,4 +127,9 @@ function Plan() {
   );
 }
 
+=======
+const Plan = () => {
+  return <></>;
+};
+>>>>>>> dev
 export default Plan;

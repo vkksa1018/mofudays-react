@@ -1,11 +1,11 @@
 import { createHashRouter, Navigate } from "react-router-dom";
 
 // layouts（ 這些檔案都要記得import並放 <Outlet /> ）
-import FrontLayout from "./layouts/FrontLayout";
-import AuthLayout from "./layouts/AuthLayout";
-import AdminLayout from "./layouts/AdminLayout";
-
+import FrontLayout from "./layout/FrontEndLayout";
+import AuthLayout from "./layout/AuthLayout";
+import AdminLayout from "./layout/AdminLayout";
 // FrontLayout
+<<<<<<< HEAD
 import Home from "../pages/FrontEndLayout/Home/Home";
 import FAQ from "../pages/FrontEndLayout/FAQ/FAQ";
 import Blog from "../pages/FrontEndLayout/Blog/Blog";
@@ -17,24 +17,44 @@ import Finish from "../pages/FrontEndLayout/Finish/Finish";
 import UserCenter from "../pages/FrontEndLayout/UserCenter/UserCenter";
 import OrderList from "../pages/FrontEndLayout/OrderList/OrderList";
 import Event from "../pages/FrontEndLayout/Event/Event";
+=======
+import Home from "./pages/FrontEndLayout/Home/Home";
+import FAQ from "./pages/FrontEndLayout/FAQ/FAQ";
+import Blog from "./pages/FrontEndLayout/Blog/Blog";
+import Plan from "./pages/FrontEndLayout/Plan/Plan";
+import Checkout from "./pages/FrontEndLayout/Checkout/Checkout";
+import Finish from "./pages/FrontEndLayout/Finish/Finish";
+import UserCenter from "./pages/FrontEndLayout/UserCenter/UserCenter";
+import PetInfo from "./pages/FrontEndLayout/PetInfo/PetInfo";
+
+//usercenter
+import UserProfile from "./pages/FrontEndLayout/UserCenter/UserProfile";
+import OrderLists from "./pages/FrontEndLayout/UserCenter/OrderLists";
+import MemberExclusives from "./pages/FrontEndLayout/UserCenter/MemberExclusive";
+import MemberEvent1 from "./pages/FrontEndLayout/UserCenter/MemberEvent1";
+import MemberEvent2 from "./pages/FrontEndLayout/UserCenter/MemberEvent2";
+import MemberEvent3 from "./pages/FrontEndLayout/UserCenter/MemberEvent3";
+>>>>>>> dev
 
 // Auth pages（ 會員/後台共用同一個 Login 頁面 ）
-import Login from "../pages/FrontEndLayout/Login/Login";
-import Signup from "../pages/FrontEndLayout/Signup/Signup";
+import Login from "./pages/FrontEndLayout/Login/Login";
+import Signup from "./pages/FrontEndLayout/Signup/Signup";
 
 // Admin pages（先做 placeholder 也行）
 // 先放 Dashboard 占位，後續再補其他後台頁
-import AdminDashboard from "../pages/BackEndLayout/Dashboard/Dashboard";
+import AdminDashboard from "./pages/BackEndLayout/Dashboard/Dashboard";
 
 // 404
-import NotFound from "../pages/NotFound";
+import NotFound from "./layout/NotFound";
 
 // auth hooks
-import { useAuth } from "../features/auth/hooks";
+import { useAuth } from "./features/auth/hooks";
 
 // 前台會員權限：沒登入 => 去 /login
 function RequireAuth({ children }) {
   const { isAuthed } = useAuth();
+
+  // 如果沒登入，強制跳轉到登入頁，並記錄原本想去的頁面 (replace: true)
   return isAuthed ? children : <Navigate to="/login" replace />;
 }
 
@@ -58,11 +78,21 @@ export const router = createHashRouter([
       { index: true, element: <Home /> },
       { path: "faq", element: <FAQ /> },
       { path: "blog", element: <Blog /> },
+<<<<<<< HEAD
       { path: "blog/:postId", element: <BlogPost /> },
       { path: "petinfo", element: <PetInfo /> },
+=======
+      // { path: "blog/:postId", element: <BlogPost /> },
+>>>>>>> dev
       { path: "plan", element: <Plan /> },
-
-      // 需要登入
+      {
+        path: "petinfo",
+        element: (
+          <RequireAuth>
+            <PetInfo />
+          </RequireAuth>
+        ),
+      },
       {
         path: "checkout",
         element: (
@@ -82,18 +112,27 @@ export const router = createHashRouter([
 
       // 會員中心
       {
-        path: "member",
+        path: "usercenter",
         element: (
           <RequireAuth>
             <UserCenter />
           </RequireAuth>
         ),
         children: [
-          { index: true, element: <Navigate to="orders" replace /> },
-          { path: "orders", element: <OrderList /> },
-          { path: "activities", element: <Event /> },
+          // 預設進入會員中心時導向「會員資料」
+          { index: true, element: <Navigate to="profile" replace /> },
+
+          // 三個主要 Tab 頁面
+          { path: "profile", element: <UserProfile /> },
+          { path: "orders", element: <OrderLists /> },
+          { path: "activities", element: <MemberExclusives /> },
         ],
       },
+
+      // 三個活動詳情頁
+      { path: "member-event-1", element: <MemberEvent1 /> },
+      { path: "member-event-2", element: <MemberEvent2 /> },
+      { path: "member-event-3", element: <MemberEvent3 /> },
     ],
   },
 
