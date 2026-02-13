@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./Finish.scss";
 import ProgressBar2 from "../Subscribe/ProgressBar2.jsx";
 
@@ -226,9 +225,4 @@ function Finish() {
   );
 }
 
-=======
-const Finish = () => {
-  return <></>;
-};
->>>>>>> dev
 export default Finish;

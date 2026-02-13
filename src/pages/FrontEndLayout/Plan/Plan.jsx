@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 import "./Plan.scss";
 import ProgressBar1 from "../Subscribe/ProgressBar1.jsx";
 import PlanCard from "../Subscribe/PlanCard.jsx";
 
 import planImg from "../../assets/images/subscribe/plan-img.png";
-
+// 元件
 const ActiveButtonPhone = () => {
   return (
     <div className="text-center d-none-min-sm px-5-5-sm">
@@ -127,9 +126,4 @@ function Plan() {
   );
 }
 
-=======
-const Plan = () => {
-  return <></>;
-};
->>>>>>> dev
 export default Plan;

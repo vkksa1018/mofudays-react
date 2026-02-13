@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./Checkout.scss";
 import ProgressBar2 from "../Subscribe/ProgressBar2";
 
@@ -297,9 +296,4 @@ function Checkout() {
   );
 }
 
-=======
-const Checkout = () => {
-  return <></>;
-};
->>>>>>> dev
 export default Checkout;
