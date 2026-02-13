@@ -1,48 +1,15 @@
 import "./PetInfo.scss";
 
-import serviceStep1 from "./assets/images/subscribe/service_step_1.svg";
-import serviceStep2 from "./assets/images/subscribe/service_step_2.svg";
-import healthImg1 from "./assets/images/subscribe/image_btn_01.png";
-import healthImg2 from "./assets/images/subscribe/image_btn_02.png";
-import healthImg3 from "./assets/images/subscribe/image_btn_03.png";
-import playImg1 from "./assets/images/subscribe/image_btn_04.png";
-import playImg2 from "./assets/images/subscribe/image_btn_05.png";
-import playImg3 from "./assets/images/subscribe/image_btn_06.png";
-import dogIllustration from "./assets/images/subscribe/Illustration-dog.png";
-import feedIllustration from "./assets/images/subscribe/Illustration-feed.png";
+import ProgressBar1 from "../Subscribe/ProgressBar1";
 
-const ProgressBar = () => {
-  return (
-    <div className="d-flex justify-content-between align-items-center flex-col-sm px-110 px-24-sm mb-6 mb-24-sm">
-      {/* 標題 */}
-      <div className="title py-5-5-sm mb-32-sm">
-        <h2 className="fw-bold mb-2 text-center-sm">簡單 2 步驟</h2>
-        <p className="fw-bold text-center-sm">為毛孩送上每月一盒溫暖心意</p>
-      </div>
-
-      {/* 進度條 */}
-      <div className="step d-flex align-items-center align-item-start-sm">
-        <div className="step-item">
-          <img
-            src={serviceStep1}
-            alt="step_1"
-            className="mx-auto d-block mb-2 mb-10-sm"
-          />
-          <p className="text-center fs-14">填寫毛孩資料</p>
-        </div>
-        <div className="step-line disabled"></div>
-        <div className="step-item disabled">
-          <img
-            src={serviceStep2}
-            alt="step_2"
-            className="mx-auto d-block mb-2 mb-10-sm"
-          />
-          <p className="text-center fs-14">查看方案</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import healthImg1 from "../../assets/images/subscribe/image_btn_02.png";
+import healthImg2 from "../../assets/images/subscribe/image_btn_02.png";
+import healthImg3 from "../../assets/images/subscribe/image_btn_03.png";
+import playImg1 from "../../assets/images/subscribe/image_btn_04.png";
+import playImg2 from "../../assets/images/subscribe/image_btn_05.png";
+import playImg3 from "../../assets/images/subscribe/image_btn_06.png";
+import dogIllustration from "../../assets/images/subscribe/Illustration-dog.png";
+import feedIllustration from "../../assets/images/subscribe/Illustration-feed.png";
 
 function PetInfo() {
   return (
@@ -50,7 +17,7 @@ function PetInfo() {
       <main className="pet-info py-11 pt-80-sm pb-0-sm">
         <div className="container">
           {/* 標題進度條 */}
-          <ProgressBar />
+          <ProgressBar1 />
 
           {/* 毛孩資料卡片 */}
           <div className="card-bg py-9 px-12-sm mb-6 mb-0-sm">
