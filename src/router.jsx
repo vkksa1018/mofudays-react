@@ -89,10 +89,10 @@ export const router = createHashRouter([
 
       // 會員中心
       {
-        path: "member",
+        path: "usercenter",
         element: (
           <RequireAuth>
-            <Member />
+            <UserCenter />
           </RequireAuth>
         ),
         children: [
@@ -100,6 +100,14 @@ export const router = createHashRouter([
           { path: "orders", element: <OrderList /> },
           { path: "activities", element: <Event /> },
         ],
+        //暫時移除權限檢查 by James
+        // path: "member",
+        // element: <Member />,
+        // children: [
+        //   { index: true, element: <Navigate to="orders" replace /> },
+        //   { path: "orders", element: <OrderList /> },
+        //   { path: "activities", element: <Event /> },
+        // ],
       },
     ],
   },
