@@ -1,9 +1,9 @@
 import "./Cart.scss";
 import ProgressBar2 from "../Subscribe/ProgressBar2.jsx";
 
-import productImg1 from "../../assets/images/subscribe/product-img-01.png";
-import productImg2 from "../../assets/images/subscribe/product-img-02.png";
-import productImg3 from "../../assets/images/subscribe/product-img-03.png";
+import productImg1 from "../../../assets/images/subscribe/product-img-01.png";
+import productImg2 from "../../../assets/images/subscribe/product-img-02.png";
+import productImg3 from "../../../assets/images/subscribe/product-img-03.png";
 
 const CartCard = ({ productImg, title, price, quantity, total }) => {
   return (

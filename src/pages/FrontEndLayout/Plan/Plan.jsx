@@ -2,7 +2,7 @@ import "./Plan.scss";
 import ProgressBar1 from "../Subscribe/ProgressBar1.jsx";
 import PlanCard from "../Subscribe/PlanCard.jsx";
 
-import planImg from "../../assets/images/subscribe/plan-img.png";
+import planImg from "../../../assets/images/subscribe/plan-img.png";
 
 const ActiveButtonPhone = () => {
   return (

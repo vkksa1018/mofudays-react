@@ -1,8 +1,8 @@
 import "./Finish.scss";
 import ProgressBar2 from "../Subscribe/ProgressBar2.jsx";
 
-import finishIllustration from "../../assets/images/subscribe/Illustration-finish.png";
-import balloonIllustration from "../../assets/images/subscribe/Illustration-balloon.png";
+import finishIllustration from "../../../assets/images/subscribe/Illustration-finish.png";
+import balloonIllustration from "../../../assets/images/subscribe/Illustration-balloon.png";
 
 function Finish() {
   return (

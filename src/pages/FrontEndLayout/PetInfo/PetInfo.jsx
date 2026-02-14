@@ -2,14 +2,14 @@ import "./PetInfo.scss";
 
 import ProgressBar1 from "../Subscribe/ProgressBar1";
 
-import healthImg1 from "../../assets/images/subscribe/image_btn_02.png";
-import healthImg2 from "../../assets/images/subscribe/image_btn_02.png";
-import healthImg3 from "../../assets/images/subscribe/image_btn_03.png";
-import playImg1 from "../../assets/images/subscribe/image_btn_04.png";
-import playImg2 from "../../assets/images/subscribe/image_btn_05.png";
-import playImg3 from "../../assets/images/subscribe/image_btn_06.png";
-import dogIllustration from "../../assets/images/subscribe/Illustration-dog.png";
-import feedIllustration from "../../assets/images/subscribe/Illustration-feed.png";
+import healthImg1 from "../../../assets/images/subscribe/image_btn_02.png";
+import healthImg2 from "../../../assets/images/subscribe/image_btn_02.png";
+import healthImg3 from "../../../assets/images/subscribe/image_btn_03.png";
+import playImg1 from "../../../assets/images/subscribe/image_btn_04.png";
+import playImg2 from "../../../assets/images/subscribe/image_btn_05.png";
+import playImg3 from "../../../assets/images/subscribe/image_btn_06.png";
+import dogIllustration from "../../../assets/images/subscribe/Illustration-dog.png";
+import feedIllustration from "../../../assets/images/subscribe/Illustration-feed.png";
 
 function PetInfo() {
   return (
