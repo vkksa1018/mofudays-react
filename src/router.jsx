@@ -4,6 +4,7 @@ import { createHashRouter, Navigate } from "react-router-dom";
 import FrontLayout from "./layout/FrontEndLayout";
 import AuthLayout from "./layout/AuthLayout";
 import AdminLayout from "./layout/AdminLayout";
+
 // FrontLayout
 import Home from "./pages/FrontEndLayout/Home/Home";
 import FAQ from "./pages/FrontEndLayout/FAQ/FAQ";
@@ -33,37 +34,59 @@ import AdminDashboard from "./pages/BackEndLayout/Dashboard/Dashboard";
 // 404
 import NotFound from "./layout/NotFound";
 
-//test
+//API測試頁
 import TestAuthPage from "./pages/Test/TestAuthPage";
 
 // auth hooks
 import { useAuth } from "./features/auth/hooks";
 
-// 前台會員權限：沒登入 => 去 /login
+// 前台會員權限守衛
 function RequireAuth({ children }) {
   const { isAuthed, isLoading } = useAuth();
 
+  // 1. 處理讀取中狀態：避免 API 還沒回傳時就執行 Navigate
   if (isLoading) {
-    return <div>載入中...</div>;
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
+      >
+        載入中...
+      </div>
+    );
   }
 
+  // 2. 判斷是否登入：isAuthed 是基於 token 是否存在
   return isAuthed ? children : <Navigate to="/login" replace />;
 }
 
-/** 後台管理員權限：沒登入或不是 admin -> 去 /admin/login */
+//後台管理員權限守衛
 function RequireAdmin({ children }) {
   const { isAuthed, user, isLoading } = useAuth();
 
-  // 關鍵：如果還在讀取中，先回傳 Loading 畫面，不要執行 Navigate
+  // 1. 處理讀取中狀態
   if (isLoading) {
-    return <div>權限驗證中...</div>; // 或者放你的 Loading Spinner
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
+      >
+        權限驗證中...
+      </div>
+    );
   }
 
-  const isAdmin = Boolean(user?.role === "admin");
+  // 2. 權限判斷：user 是從 getUserProfile 回傳的，找不到會是 null
+  const isAdmin = user?.role === "admin";
 
-  // 只有在確定讀取完畢，且不是管理員時才跳轉
-  return isAuthed && isAdmin ? children : <Navigate to="/login" replace />;
+  // 如果已登入且是管理員，准許進入
+  if (isAuthed && isAdmin) {
+    return children;
+  }
+
+  // 3. 權限不符：跳轉回後台專用的登入路徑 /admin/login
+  // 這樣能保持 mode="admin" 的一致性
+  return <Navigate to="/login" replace />;
 }
+
 export const router = createHashRouter([
   // 前台（ FrontLayout ）
   {
@@ -155,6 +178,8 @@ export const router = createHashRouter([
       // { path: "orders", element: <AdminOrders /> },
     ],
   },
+
+  //API測試頁
   {
     path: "/test",
     element: <TestAuthPage />,
