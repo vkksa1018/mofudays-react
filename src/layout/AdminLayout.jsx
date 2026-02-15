@@ -1,3 +1,7 @@
+
+import { Outlet } from "react-router-dom"
 export default function AdminLayout() {
-  return <h2>後台頁面 layout</h2>;
+  return <>
+    <Outlet></Outlet>
+  </>
 }

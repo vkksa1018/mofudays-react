@@ -31,7 +31,7 @@ import Signup from "./pages/FrontEndLayout/Signup/Signup";
 
 // Admin pages（先做 placeholder 也行）
 // 先放 Dashboard 占位，後續再補其他後台頁
-import AdminDashboard from "./pages/BackEndLayout/Dashboard/Dashboard";
+import AdminDashboard from "./pages/BackEndLayout/Dashboard/AdminDashboard";
 
 // 404
 import NotFound from "./layout/NotFound";
@@ -148,36 +148,36 @@ export const router = createHashRouter([
       // },
 
       // 會員中心
-      // {
-      //   path: "usercenter",
-      //   element: (
-      //     <RequireAuth>
-      //       <UserCenter />
-      //     </RequireAuth>
-      //   ),
-      //   children: [
-      //     // 預設進入會員中心時導向「會員資料」
-      //     { index: true, element: <Navigate to="profile" replace /> },
-
-      //     // 三個主要 Tab 頁面
-      //     { path: "profile", element: <UserProfile /> },
-      //     { path: "orders", element: <OrderLists /> },
-      //     { 
-      //       path: "events", 
-      //       element: <MemberExclusives />,
-      //     },
-      //   ],
-      // },
       {
         path: "usercenter",
-        element: <UserCenter />,
+        element: (
+          <RequireAuth>
+            <UserCenter />
+          </RequireAuth>
+        ),
         children: [
+          // 預設進入會員中心時導向「會員資料」
           { index: true, element: <Navigate to="profile" replace /> },
+
+          // 三個主要 Tab 頁面
           { path: "profile", element: <UserProfile /> },
           { path: "orders", element: <OrderLists /> },
-          { path: "events", element: <MemberExclusives /> },
-        ]
+          { 
+            path: "events", 
+            element: <MemberExclusives />,
+          },
+        ],
       },
+      // {
+      //   path: "usercenter",
+      //   element: <UserCenter />,
+      //   children: [
+      //     { index: true, element: <Navigate to="profile" replace /> },
+      //     { path: "profile", element: <UserProfile /> },
+      //     { path: "orders", element: <OrderLists /> },
+      //     { path: "events", element: <MemberExclusives /> },
+      //   ]
+      // },
 
       // 三個活動詳情頁
       { path: "member-event-1", element: <MemberEvent1 /> },
@@ -204,13 +204,14 @@ export const router = createHashRouter([
   {
     path: "/admin",
     element: (
-      <RequireAdmin>
+      // <RequireAdmin>
+      //   <AdminLayout />
+      // </RequireAdmin>
         <AdminLayout />
-      </RequireAdmin>
     ),
     children: [
-      { index: true, element: <Navigate to="dashboard" replace /> },
-      { path: "dashboard", element: <AdminDashboard /> },
+    { index: true, element: <AdminDashboard /> },
+    { path: "dashboard", element: <AdminDashboard /> },
       // { path: "products", element: <AdminProducts /> },
       // { path: "orders", element: <AdminOrders /> },
     ],
