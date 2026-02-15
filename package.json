@@ -16,7 +16,7 @@
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
-    "json-server": "^1.0.0-beta.5",
+    "express": "^5.2.1",
     "json-server-auth": "^2.1.0",
     "lucide": "^0.563.0",
     "lucide-react": "^0.563.0",
@@ -35,6 +35,8 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
+    "json-server": "^0.17.4",
+    "sass": "^1.97.3",
     "sass-embedded": "^1.97.2",
     "vite": "^7.2.4"
   }

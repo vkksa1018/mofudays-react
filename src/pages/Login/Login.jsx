@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../app/layouts/components/Header/Header";
-import Footer from "../../app/layouts/components/Footer/Footer";
+import Header from "../../../app/layouts/components/Header/Header";
+import Footer from "../../../app/layouts/components/Footer/Footer";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Login.scss";
 
@@ -92,7 +92,7 @@ export default function Login() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
         {/* <Announcement /> */}
 
@@ -307,7 +307,7 @@ export default function Login() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

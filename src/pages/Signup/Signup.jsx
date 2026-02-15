@@ -4,8 +4,8 @@ import "./Signup.scss";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../app/layouts/components/Header/Header";
-import Footer from "../../app/layouts/components/Footer/Footer";
+import Header from "../../../app/layouts/components/Header/Header";
+import Footer from "../../../app/layouts/components/Footer/Footer";
 
 //圖片載入
 import loginSlider01 from "../../assets/images/common/login-slider-01.png";
@@ -57,7 +57,7 @@ export default function Signup() {
   const onSubmit = async (data) => {
     try {
       // 註冊 API
-      await axios.post("http://localhost:3000/register", data);
+      await axios.post(re, data);
       console.log("註冊成功回傳資料：", res.data);
 
       alert("註冊成功！");
@@ -122,7 +122,7 @@ export default function Signup() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <main>
         {/* <Announcement /> */}
@@ -420,7 +420,7 @@ export default function Signup() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
