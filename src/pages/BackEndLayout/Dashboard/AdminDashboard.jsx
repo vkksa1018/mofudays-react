@@ -22,14 +22,14 @@ function StatCard({ title, value, unit }) {
     <div className="card shadow-sm border-0 rounded-4 h-100 ad-card">
       <div className="card-body d-flex flex-column gap-2">
         <div className="d-flex align-items-start justify-content-between">
-          <div className="text-secondary small fw-semibold">{title}</div>
+          <div className="small fw-semibold">{title}</div>
           <button type="button" className="btn btn-link p-0 ad-iconLink" aria-label="info">
             <Info size={16} />
           </button>
         </div>
         <div className="d-flex align-items-end gap-2">
           <div className="display-6 fw-bolder ad-orange">{value}</div>
-          <div className="text-secondary fw-semibold pb-2">{unit}</div>
+          <div className="fw-semibold pb-2">{unit}</div>
         </div>
       </div>
     </div>
@@ -264,8 +264,8 @@ export default function AdminDashboard() {
           <div className="ad-side__user">
             <div className="ad-side__avatar" />
             <div className="lh-sm">
-              <div className="fw-bold small">Gill</div>
-              <div className="text-secondary small">Gillbeauty@gmail.com</div>
+              <div className="fw-bold small">圓圓</div>
+              <div className="small">yuan_yuan@gmail.com</div>
             </div>
           </div>
 
@@ -279,7 +279,6 @@ export default function AdminDashboard() {
       {/* 右側內容 */}
       <main className="ad-main">
         <div className="ad-main__inner">
-          <div className="small text-secondary mb-2">後台-總覽頁</div>
 
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h2 className="h5 fw-bolder m-0">數據總覽</h2>
@@ -340,10 +339,10 @@ export default function AdminDashboard() {
                         </td>
                         <td>{o.buyer}</td>
                         <td className="text-end">
-                          <button type="button" className="btn btn-light border rounded-circle ad-iconBtn me-2" title="留言">
+                          <button type="button" className="btn btn-light border ad-iconBtn me-2" title="留言">
                             <MessageCircle size={16} />
                           </button>
-                          <button type="button" className="btn btn-light border rounded-circle ad-iconBtn" title="編輯">
+                          <button type="button" className="btn btn-light border ad-iconBtn" title="編輯">
                             <Pencil size={16} />
                           </button>
                         </td>
@@ -451,7 +450,7 @@ export default function AdminDashboard() {
                         <td className="text-truncate" style={{ maxWidth: 280 }}>{m.address}</td>
                         <td>{m.createdAt}</td>
                         <td className="text-end">
-                          <button type="button" className="btn btn-light border rounded-circle ad-iconBtn" title="編輯">
+                          <button type="button" className="btn btn-light border ad-iconBtn" title="編輯">
                             <Pencil size={16} />
                           </button>
                         </td>

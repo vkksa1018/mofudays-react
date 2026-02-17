@@ -14,7 +14,7 @@ import PetInfo from "./pages/FrontEndLayout/PetInfo/PetInfo";
 import Plan from "./pages/FrontEndLayout/Plan/Plan";
 import Cart from "./pages/FrontEndLayout/Cart/Cart";
 import Checkout from "./pages/FrontEndLayout/Checkout/Checkout";
-import Finish from "./pages/FrontEndLayout/Finish/Finish";
+import Finish from "./pages/FrontEndLayout/Finish/Fi
 
 //usercenter
 import UserCenter from "./pages/FrontEndLayout/UserCenter/UserCenter";
