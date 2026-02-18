@@ -14,7 +14,7 @@ import PetInfo from "./pages/FrontEndLayout/PetInfo/PetInfo";
 import Plan from "./pages/FrontEndLayout/Plan/Plan";
 import Cart from "./pages/FrontEndLayout/Cart/Cart";
 import Checkout from "./pages/FrontEndLayout/Checkout/Checkout";
-import Finish from "./pages/FrontEndLayout/Finish/Fi
+import Finish from "./pages/FrontEndLayout/Finish/Finish";
 
 //usercenter
 import UserCenter from "./pages/FrontEndLayout/UserCenter/UserCenter";
@@ -31,7 +31,8 @@ import Signup from "./pages/FrontEndLayout/Signup/Signup";
 
 // Admin pages（先做 placeholder 也行）
 // 先放 Dashboard 占位，後續再補其他後台頁
-import AdminDashboard from "./pages/BackEndLayout/Dashboard/AdminDashboard";
+// import AdminDashboard from "./pages/BackEndLayout/AdminDashboard/AdminDashboard";
+import { AdminLogin, AdminDashboard } from "./pages/BackEndLayout/adminIndex";
 
 // 404
 import NotFound from "./layout/NotFound";
@@ -86,7 +87,7 @@ function RequireAdmin({ children }) {
 
   // 3. 權限不符：跳轉回後台專用的登入路徑 /admin/login
   // 這樣能保持 mode="admin" 的一致性
-  return <Navigate to="/login" replace />;
+  return <Navigate to="admin/login" replace />;
 }
 
 export const router = createHashRouter([
@@ -164,8 +165,8 @@ export const router = createHashRouter([
           // 三個主要 Tab 頁面
           { path: "profile", element: <UserProfile /> },
           { path: "orders", element: <OrderLists /> },
-          { 
-            path: "events", 
+          {
+            path: "events",
             element: <MemberExclusives />,
           },
         ],
@@ -198,28 +199,26 @@ export const router = createHashRouter([
       { path: "signup", element: <Signup /> },
 
       // 後台登入： 同一個 Login 元件，只是 mode 不同
-      { path: "admin/login", element: <Login mode="admin" /> },
+      // { path: "admin/login", element: <Login mode="admin" /> },
+       { path: "admin/login", element: <AdminLogin /> },
     ],
   },
 
   // 後台（AdminLayout + RequireAdmin）
   {
     path: "/admin",
-    //後台暫時拿掉權限
-    // element: (
-    //   <RequireAdmin>
-    //     <AdminLayout />
-    //   </RequireAdmin>
-    // ),
-    element: <AdminLayout />,
+    element: (
+      <RequireAdmin>
+        <AdminLayout />
+      </RequireAdmin>
+    ),
     children: [
-    { index: true, element: <AdminDashboard /> },
-    { path: "dashboard", element: <AdminDashboard /> },
+      { index: true, element: <Navigate to="dashboard" replace /> },
+      { path: "dashboard", element: <AdminDashboard /> },
       // { path: "products", element: <AdminProducts /> },
       // { path: "orders", element: <AdminOrders /> },
     ],
   },
-
   //API測試頁
   // {
   //   path: "/test",
