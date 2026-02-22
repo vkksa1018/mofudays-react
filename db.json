@@ -71,12 +71,13 @@
       "status": "active",
       "role": "admin",
       "createdAt": "2024-08-27T23:00:00+08:00",
-      "updatedAt": "2025-12-30T23:00:00+08:00",
+      "updatedAt": "2026-02-22T12:35:34.107Z",
       "deletedAt": null,
       "lastLoginAt": "2026-01-09T09:10:00+08:00",
       "loginFailCount": 0,
       "isLoggedIn": true,
-      "isActive": true
+      "isActive": false,
+      "avatar": ""
     },
     {
       "id": "4e1945b0-5d24-4288-bce1-75846dfad4a7",
@@ -185,6 +186,22 @@
       "isLoggedIn": false,
       "createdAt": "2026-02-21T09:26:01.942Z",
       "id": "9TfdAFA"
+    },
+    {
+      "email": "neyo10091@gmail.com",
+      "password": "$2a$10$M4mlXEDqia9k3g/nwP5C.O1qP47YRJPEDc72JDEmBi4c9fb/JQIpG",
+      "name": "王",
+      "nickname": "柏翔",
+      "birthday": "2024-12-31",
+      "phone": "0911111111",
+      "avatar": "",
+      "isActive": true,
+      "updatedAt": "2026-02-22T12:36:26.962Z",
+      "role": "admin",
+      "deletedAt": null,
+      "isLoggedIn": false,
+      "createdAt": "2026-02-22T12:36:26.962Z",
+      "id": "riC1-8F"
     }
   ],
   "plans": [
