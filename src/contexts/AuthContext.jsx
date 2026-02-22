@@ -1,33 +1,48 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }) => {
-  const [isAuthed, setIsAuthed] = useState(false);
-  const [user, setUser] = useState(null);
+// ── 工具函式：同時查 localStorage + sessionStorage ──
+function getStorage(key) {
+  return localStorage.getItem(key) || sessionStorage.getItem(key) || null;
+}
 
-  // 初始化：檢查本地是否有 token
-  useEffect(() => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (token) {
-      setIsAuthed(true);
-      // 這裡可以選擇透過 API 獲取最新的使用者資料
-    }
-  }, []);
+function clearStorage(...keys) {
+  keys.forEach((key) => {
+    localStorage.removeItem(key);
+    sessionStorage.removeItem(key);
+  });
+}
+
+export const AuthProvider = ({ children }) => {
+  // lazy initializer：頁面一載入就從 storage 還原狀態，解決跳轉後名字消失問題
+  const [user, setUser] = useState(() => {
+    const token = getStorage("token");
+    const id = getStorage("userId");
+    const name = getStorage("userName");
+    if (token && id) return { id, name };
+    return null;
+  });
+
+  const [isAuthed, setIsAuthed] = useState(() => {
+    return !!getStorage("token");
+  });
 
   const login = (userData, token, rememberMe) => {
     const storage = rememberMe ? localStorage : sessionStorage;
+
     storage.setItem("token", token);
-    setIsAuthed(true);
+    storage.setItem("userId", String(userData.id));
+    storage.setItem("userName", userData.name || "");
+
     setUser(userData);
+    setIsAuthed(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    setIsAuthed(false);
+    clearStorage("token", "userId", "userName");
     setUser(null);
+    setIsAuthed(false);
   };
 
   return (

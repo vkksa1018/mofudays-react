@@ -1,52 +1,62 @@
 import { useState, useEffect } from "react";
-import { getUserProfile } from "../../api/userApi"; // 確保路徑正確
+import { getUserProfile } from "../../api/userApi";
 
 export const useAuth = () => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("accessToken"));
+
+  // 1. 修正 Token 取得來源：同時檢查 localStorage 與 sessionStorage
+  // 並將鍵名改為 "token" 以配合 Login.jsx
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token") || sessionStorage.getItem("token");
+  });
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const initAuth = async () => {
-      // 1. 如果完全沒有 Token，直接結束讀取狀態，並確保 user 是 null
-      if (!token) {
+      // 每次執行時重新取得最新的 token (確保拿到 Login 後存入的值)
+      const currentToken =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+
+      if (!currentToken) {
         setUser(null);
         setIsLoading(false);
         return;
       }
 
-      // 2. 有 Token，呼叫 API 驗證身分
       try {
+        // 2. 有 Token，呼叫 API 驗證身分
         const userData = await getUserProfile();
 
         if (userData) {
-          // 驗證成功：存入使用者資料 (包含 role: "admin" 或 "user")
           setUser(userData);
         } else {
-          // 驗證失敗：API 回傳 null (可能是 Token 過期或資料被刪除)
-          // 清除所有相關資訊，強制登出
-          localStorage.removeItem("accessToken");
+          // 驗證失敗：清除相關資訊
+          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
           localStorage.removeItem("userId");
           setToken(null);
           setUser(null);
         }
       } catch (error) {
-        console.error("Auth Hook 驗證發生非預期錯誤:", error);
-        // 發生錯誤時也視為登入無效，保護路由
+        console.error("Auth Hook 驗證發生錯誤:", error);
+        // 若 API 報錯（如 401），視為登入無效
         setUser(null);
       } finally {
-        // 無論成功或失敗，最後都要關閉 Loading 狀態
         setIsLoading(false);
       }
     };
 
     initAuth();
-  }, [token]); // 當 token 改變時（例如登入或登出），重新執行驗證
+  }, [token]); // 當 token 狀態改變時重新觸發
 
   return {
-    isAuthed: !!token, // 這裡反應最新的 token 狀態
-    user, // 這裡反應最新的會員資料 (含權限)
-    isLoading, // 路由守衛會根據這個來決定是否顯示「載入中」
+    // 3. 嚴謹的權限判定：
+    // 必須有 token，且「如果正在載入中，先不判定為 false」
+    // 這樣 RequireAuth 才會顯示「載入中」而不是直接踢人
+    isAuthed: !!token && (isLoading || !!user),
+    user,
+    isLoading,
     token,
   };
 };
