@@ -1,4 +1,4 @@
-import { createHashRouter, Navigate } from "react-router-dom";
+import { createHashRouter, Navigate, useLocation } from "react-router-dom";
 
 // layouts（ 這些檔案都要記得import並放 <Outlet /> ）
 import FrontLayout from "./layout/FrontEndLayout";
