@@ -49,11 +49,12 @@ import NotFound from "./layout/NotFound";
 // import TestAuthPage from "./pages/Test/TestAuthPage";
 
 // auth hooks
-import { useAuth } from "./features/auth/hooks";
+import { useAuth } from "./contexts/AuthContext";
 
 // 前台會員權限守衛
 function RequireAuth({ children }) {
   const { isAuthed, isLoading } = useAuth();
+  const location = useLocation();
 
   // 1. 處理讀取中狀態：避免 API 還沒回傳時就執行 Navigate
   if (isLoading) {
@@ -67,7 +68,11 @@ function RequireAuth({ children }) {
   }
 
   // 2. 判斷是否登入：isAuthed 是基於 token 是否存在
-  return isAuthed ? children : <Navigate to="/login" replace />;
+  return isAuthed ? (
+    children
+  ) : (
+    <Navigate to="/login" replace state={{ from: location }} />
+  );
 }
 
 //後台管理員權限守衛

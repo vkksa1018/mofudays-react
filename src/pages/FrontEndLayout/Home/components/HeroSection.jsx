@@ -8,22 +8,14 @@ import heroImg from "../../../../assets/images/index/hero_img.png";
 import bonePatten from "../../../../assets/images/index/hero_bone_patten.svg";
 import greenPatten from "../../../../assets/images/index/hero_green_patten.svg";
 import yellowPatten from "../../../../assets/images/index/hero_yellow_patten.svg";
-import { checkLoginStatus } from "../../../../api/userApi";
+// import { checkLoginStatus } from "../../../../api/userApi";
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
   // 處理「立即訂閱」的點擊事件
   const handleSubscribeClick = () => {
-    // const isAuthed = checkLoginStatus(); // 為了測試路由先做第17行 2025/2/15 by 納森
-    const isAuthed = true;
-    if (isAuthed) {
-      // 已登入：跳轉至寵物資訊頁 (依據你的需求)
-      navigate("/petinfo");
-    } else {
-      // 未登入：跳轉至註冊頁
-      navigate("/signup");
-    }
+    navigate("/petinfo");
   };
   return (
     <section className="hero position-relative">

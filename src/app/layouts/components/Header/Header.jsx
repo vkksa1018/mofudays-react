@@ -25,13 +25,13 @@ export default function Header() {
               height={28}
             />
           </a>
-          <Link to='/usercenter'>會員中心</Link>{/*  20250215 納森測試路由用 */}
+          <Link to="/usercenter">會員中心</Link>
+          {/*  20250215 納森測試路由用 */}
           {/* 右邊（手機）：menu + cart */}
           <MobileTopActions />
 
           {/* 右邊（桌機）：nav + cart */}
           <DesktopMenu />
-
         </div>
 
         <NewsModal />
@@ -281,11 +281,20 @@ function MobileTopActions() {
   const navigate = useNavigate();
   const { isAuthed } = useAuth();
 
+  // const handleCartClick = () => {
+  //   if (isAuthed) {
+  //     navigate("/petinfo");
+  //   } else {
+  //     navigate("/signup");
+  //   }
+  // };
+
+  //以下為vivian 0223修改
   const handleCartClick = () => {
     if (isAuthed) {
-      navigate("/petinfo");
+      navigate("/cart");
     } else {
-      navigate("/signup");
+      navigate("/login");
     }
   };
 
@@ -345,11 +354,20 @@ function NavCartItem() {
   const navigate = useNavigate();
   const { isAuthed } = useAuth();
 
+  // const handleCartClick = () => {
+  //   if (isAuthed) {
+  //     navigate("/cart");
+  //   } else {
+  //     navigate("/signup");
+  //   }
+  // };
+
+  //以下為vivian 0223修改
   const handleCartClick = () => {
     if (isAuthed) {
       navigate("/cart");
     } else {
-      navigate("/signup");
+      navigate("/login");
     }
   };
 
