@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { getUserProfile } from "../api/userApi"; // 路徑依你的專案調整
 
 const API_BASE_URL = "http://localhost:3000";
 const AuthContext = createContext(null);
@@ -20,14 +19,13 @@ export const AuthProvider = ({ children }) => {
   const [isAuthed, setIsAuthed] = useState(false);
   const [isLoading, setIsLoading] = useState(true); //0223 vivian新增
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(() => getStorage("token"));
 
   // 每次 token 變動時，呼叫 API 驗證身分並還原 user
   useEffect(() => {
     const token =
       localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsAuthed(true);
       // 這裡可以選擇透過 API 獲取最新的使用者資料
     }
@@ -42,7 +40,6 @@ export const AuthProvider = ({ children }) => {
     storage.setItem("userName", userData.name || "");
     storage.setItem("userRole", userData.role || "user");
 
-    setToken(accessToken); // 觸發 useEffect 重新驗證
     setUser(userData);
   };
 
@@ -66,7 +63,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     clearStorage("token", "userId", "userName", "userRole");
-    setToken(null);
     setUser(null);
   };
 
@@ -77,4 +73,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
