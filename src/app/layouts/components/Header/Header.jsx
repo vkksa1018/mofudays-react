@@ -333,7 +333,7 @@ function MobileTopActions() {
   return (
     <div className="d-flex align-items-center gap-3 d-lg-none">
       <button
-        className="btn p-0 border-0"
+        className="btn p-0 border-0 d-md-none"
         onClick={handleCartClick}
         aria-label="Cart"
       >
@@ -341,7 +341,7 @@ function MobileTopActions() {
       </button>
 
       <button
-        className="btn p-0 border-0"
+        className="btn p-0 border-0 d-md-none"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#mobileMenu"

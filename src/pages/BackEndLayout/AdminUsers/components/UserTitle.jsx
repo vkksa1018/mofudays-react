@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { Contact } from "lucide-react";
 
 export default function AdminTitle({ flash }) {
   return (
@@ -15,7 +15,7 @@ export default function AdminTitle({ flash }) {
 
         <div className="d-flex align-items-start gap-3">
           <div className="admin-pages__titleIcon">
-            <Users size={28} />
+            <Contact size={28} />
           </div>
 
           <div>

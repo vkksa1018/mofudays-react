@@ -19,8 +19,8 @@ function clearStorage(...keys) {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(getStorage("token"));
   const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(() => getStorage("token"));
 
   useEffect(() => {
     const initAuth = async () => {
@@ -79,7 +79,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     clearStorage("token", "userId", "userName", "userRole");
-    setToken(null);
     setUser(null);
 
     toast.success("您已成功登出", {
@@ -108,4 +107,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
