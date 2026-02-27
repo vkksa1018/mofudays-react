@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createDog,
+  updateDog,
   getCurrentUserId,
   getDogsByOwnerId,
 } from "../../../api/planApi";
@@ -130,6 +131,7 @@ function PetInfo() {
   };
   const CODE_TO_HEALTH = { JOINT: "joint", DIGEST: "digestion", SKIN: "skin" };
   const CODE_TO_PLAY = { IQ: "brainpower", BITE: "bite", WALK: "walk" };
+
   const prefillFromDog = (dog) => {
     setPetGender(dog.gender === "M" ? "male" : "female");
     setSelectedSize(CODE_TO_SIZE[dog.size] ?? "選擇體型");
@@ -141,6 +143,13 @@ function PetInfo() {
     );
     setSelectedHealth(CODE_TO_HEALTH[dog.healthCareNeeds?.[0]] ?? null);
     setSelectedPlay(CODE_TO_PLAY[dog.activityTypes?.[0]] ?? null);
+    setErrors({
+      petYear: false,
+      petSize: false,
+      petName: false,
+      petGender: false,
+      petDiet: false,
+    });
   };
 
   // 寵物名稱驗證優化
@@ -246,9 +255,13 @@ function PetInfo() {
       //產生推薦方案
       generatedPlans = generatePlans(formData, db);
 
-      const dogId = confirmedExistingDog
-        ? confirmedExistingDog.id
-        : (await createDog(dogPayload)).id;
+      let dogId;
+      if (confirmedExistingDog) {
+        await updateDog(confirmedExistingDog.id, dogPayload);
+        dogId = confirmedExistingDog.id;
+      } else {
+        dogId = (await createDog(dogPayload)).id;
+      }
       localStorage.setItem(
         "planState",
         JSON.stringify({ formData, dogId, generatedPlans }),
@@ -394,11 +407,7 @@ function PetInfo() {
                       <button
                         className={`form-select text-start border py-3 px-5
                           ${errors.petYear ? "border-danger" : ""}
-                          ${
-                            selectedYear === "選擇年齡"
-                              ? ""
-                              : "text-primary-500 fw-bold"
-                          }`}
+                          ${selectedYear === "選擇年齡" ? "text-neutral-400" : "text-primary-500 fw-bold"}`}
                         type="button"
                         id="pet-year"
                         name="pet-year"
@@ -481,11 +490,7 @@ function PetInfo() {
                       <button
                         className={`form-select text-start border py-3 px-5
                           ${errors.petSize ? "border-danger" : ""}
-                          ${
-                            selectedSize === "選擇體型"
-                              ? ""
-                              : "text-primary-500 fw-bold"
-                          }`}
+                          ${selectedSize === "選擇體型" ? "text-neutral-400" : "text-primary-500 fw-bold"}`}
                         type="button"
                         id="pet-size"
                         onClick={() =>

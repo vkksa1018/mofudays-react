@@ -81,7 +81,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
                           ${errors.city ? "border-danger" : ""}
-                          ${form.city ? "form-select-filled" : ""}`}
+                          ${form.city ? "form-select-filled" : "text-neutral-400"}`}
                         type="button"
                         onClick={() =>
                           setOpenDropdown(
@@ -128,7 +128,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
                           ${errors.district ? "border-danger" : ""}
-                          ${form.district ? "form-select-filled" : ""}`}
+                          ${form.district ? "form-select-filled" : "text-neutral-400"}`}
                         type="button"
                         disabled={!form.city}
                         onClick={() =>
