@@ -26,7 +26,7 @@ import MemberEvent1 from "./pages/FrontEndLayout/UserCenter/MemberEvent1";
 import MemberEvent2 from "./pages/FrontEndLayout/UserCenter/MemberEvent2";
 import MemberEvent3 from "./pages/FrontEndLayout/UserCenter/MemberEvent3";
 
-// Auth pages（ 會員/後台共用同一個 Login 頁面 ）
+// Auth pages
 import Login from "./pages/FrontEndLayout/Login/Login";
 import Signup from "./pages/FrontEndLayout/Signup/Signup";
 
@@ -116,7 +116,7 @@ export const router = createHashRouter([
         path: "usercenter",
         element: (
           <RequireAuth>
-            <UserCenterLayout /> {/* 這是下方步驟 2 建立的新組件 */}
+            <UserCenterLayout />
           </RequireAuth>
         ),
         children: [
