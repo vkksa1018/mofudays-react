@@ -56,7 +56,7 @@ export default function PlanFormModal({
       createdAt: formatDateTimeDisplay(initialData?.createdAt) || "—",
       updatedAt: now,
     };
-  }, [mode, initialData, open]);
+  }, [mode, initialData]);
 
   const {
     register,
@@ -67,7 +67,6 @@ export default function PlanFormModal({
     mode: "onBlur",
     defaultValues,
   });
-
   useEffect(() => {
     if (open) {
       reset(defaultValues);

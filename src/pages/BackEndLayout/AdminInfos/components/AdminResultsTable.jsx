@@ -5,7 +5,7 @@ export default function AdminResultsTable({
   loading,
   admins,       // 傳「pagedAdmins」
   hasNoData,    // 傳 visibleAdmins.length === 0
-  currentAdmin,
+  // currentAdmin,
   onEdit,
   // onSoftDelete,
   onRestore,
@@ -13,7 +13,7 @@ export default function AdminResultsTable({
   return (
     <section className="admin-pages__results">
       <div className="admin-pages__panel">
-        <div className="table-responsive">
+        <div className="table-responsive admin-pages__tableWrap">
           <table className="table admin-pages__table align-middle mb-0">
             <thead>
               <tr className="small">

@@ -20,11 +20,11 @@ export default function ToyResultsTable({
   return (
     <section className="admin-pages__results">
       <div className="admin-pages__panel">
-        <div className="table-responsive">
+        <div className="table-responsive admin-pages__tableWrap">
           <table className="table admin-pages__table align-middle mb-0">
             <thead>
               <tr className="small">
-                <th style={{ width: 220 }}></th>
+                <th style={{ width: 180 }}></th>
                 <th className="text-center">玩具名稱</th>
                 <th className="text-center">適用體型</th>
                 <th className="text-center">適用年齡</th>

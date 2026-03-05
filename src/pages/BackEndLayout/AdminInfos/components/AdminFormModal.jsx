@@ -34,6 +34,7 @@ export default function AdminFormModal({
       nickname: initialData?.nickname ?? "",
       birthday: initialData?.birthday ?? "",
       phone: initialData?.phone ?? "",
+      address: initialData?.address ?? "",
       // avatar: initialData?.avatar ?? "",
       isActive: String(initialData?.isActive ?? true),
     }),
@@ -55,7 +56,7 @@ export default function AdminFormModal({
       createdAt: formatDateTimeDisplay(initialData?.createdAt) || "—",
       updatedAt: now, // 修改時顯示本次預計更新時間
     };
-  }, [mode, initialData, open]);
+  }, [mode, initialData]);
 
   const {
     register,
@@ -70,7 +71,7 @@ export default function AdminFormModal({
   useEffect(() => {
     if (open) {
       reset(defaultValues);
-      setRootError("");
+      // setRootError("");
     }
   }, [open, reset, defaultValues]);
 

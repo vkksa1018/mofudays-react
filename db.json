@@ -625,7 +625,7 @@
         "name": "許小花",
         "email": "huahsu@gmail.com",
         "phone": "0918-222-333",
-        "address": "莊敬路253號"
+        "address": "莊敬路252號"
       },
       "note": "自動從購物車 cart_0003 建立。",
       "subscriptionPlans": [
@@ -675,9 +675,9 @@
         }
       ],
       "createdAt": "2026-01-12T10:30:00+08:00",
-      "updatedAt": "2026-02-26T05:56:48.409Z",
+      "updatedAt": "2026-03-01T02:58:39.899Z",
       "orderNo": "MOF20260112-0003",
-      "orderStatus": "處理中",
+      "orderStatus": "已完成",
       "shippingStatus": "待出貨",
       "subscriptionStatus": "訂閱中",
       "isActive": true

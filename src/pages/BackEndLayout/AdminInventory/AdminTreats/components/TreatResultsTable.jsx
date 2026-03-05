@@ -19,11 +19,11 @@ export default function TreatResultsTable({
   return (
     <section className="admin-pages__results">
       <div className="admin-pages__panel">
-        <div className="table-responsive">
+        <div className="table-responsive admin-pages__tableWrap">
           <table className="table admin-pages__table align-middle mb-0">
             <thead>
               <tr className="small">
-                <th style={{ width: 220 }}></th>
+                <th style={{ width: 180 }}></th>
                 <th className="text-center" >零食名稱</th>
                 <th className="text-center" >成分</th>
                 <th className="text-center">口感</th>

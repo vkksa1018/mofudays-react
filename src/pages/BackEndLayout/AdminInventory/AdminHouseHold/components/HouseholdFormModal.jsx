@@ -75,7 +75,7 @@ export default function HouseholdFormModal({
       createdAt: formatDateTimeDisplay(initialData?.createdAt) || "—",
       updatedAt: now,
     };
-  }, [mode, initialData, open]);
+  }, [mode, initialData]);
 
   const {
     register,

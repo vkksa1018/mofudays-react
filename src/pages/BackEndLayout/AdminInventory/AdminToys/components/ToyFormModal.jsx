@@ -80,7 +80,7 @@ export default function ToyFormModal({
       createdAt: formatDateTimeDisplay(initialData?.createdAt) || "—",
       updatedAt: now,
     };
-  }, [mode, initialData, open]);
+  }, [mode, initialData]);
 
   const {
     register,

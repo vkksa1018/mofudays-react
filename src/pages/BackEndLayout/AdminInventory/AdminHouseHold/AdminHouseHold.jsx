@@ -46,7 +46,6 @@ export default function AdminHousehold() {
     rangeText,
   } = usePagination(visibleHousehold, {
     initialPageSize: 10,
-    resetDeps: [filters],
   });
 
   const fetchItems = async () => {

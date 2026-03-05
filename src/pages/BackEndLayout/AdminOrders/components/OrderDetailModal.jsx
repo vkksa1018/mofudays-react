@@ -53,7 +53,7 @@ export default function OrderFormDetail({ subscriptions = [], defaultOpen = fals
                             <button
                               type="button"
                               className="btn btn-sm btn-bg-edit"
-                              onClick={() => onEdit(o)}
+                              // onClick={() => onEdit(o)}
                             >
                               <Pencil size={14} className="me-1" />
                               編輯
@@ -62,7 +62,7 @@ export default function OrderFormDetail({ subscriptions = [], defaultOpen = fals
                             <button
                               type="button"
                               className="btn btn-sm btn-bg-delete"
-                              onClick={() => onCancel(o)}
+                              // onClick={() => onCancel(o)}
                             >
                               <Trash2 size={14} className="me-1" />
                               取消
