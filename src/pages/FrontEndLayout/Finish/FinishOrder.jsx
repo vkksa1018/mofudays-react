@@ -16,13 +16,13 @@ const FinishOrder = ({ months, planName, planPrice, planQty, content }) => {
           零食 x {snacks} + 保健罐頭 x {household} + 互動小物 x {toys}
         </p>
       </div>
-      {/* 數量 */}
-      <div className="col-table-1-5 col-table-2-sm d-flex justify-content-center align-items-center">
-        {planQty}
-      </div>
       {/* 單價 */}
       <div className="col-table-1-5 col-table-2-sm d-flex justify-content-center align-items-center">
         ${planPrice}
+      </div>
+      {/* 數量 */}
+      <div className="col-table-1-5 col-table-2-sm d-flex justify-content-center align-items-center">
+        {planQty}
       </div>
       {/* 小計 */}
       <div className="col-table-1-5 d-flex justify-content-center align-items-center d-none-sm">

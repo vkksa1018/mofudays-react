@@ -158,19 +158,19 @@ export default function AdminDashboard() {
   /* 統計卡 */
   const stats = useMemo(() => {
     const todayOrders = orders.filter((o) => isToday(o?.orderDate)).length;
-    const ordersHasStatus = orders.some(
-      (o) => o?.orderStatus != null || o?.shippingStatus != null,
-    );
-    const pendingOrders = ordersHasStatus
-      ? orders.filter((o) =>
-          isPendingStatus(o?.orderStatus ?? o?.shippingStatus),
-        ).length
-      : subscriptions.filter((s) => isPendingStatus(s?.shippingStatus)).length;
+
+    // [james修正] 待處理訂單改為直接看 orderStatus 欄位
+    // 原本邏輯判斷欄位不存在（orderStatus / shippingStatus 頂層不一定有值）導致數字不準確
+    // 現在統一看 orderStatus，符合後台實際資料格式
+    const pendingOrders = orders.filter((o) =>
+      isPendingStatus(o?.orderStatus ?? o?.paymentStatus),
+    ).length;
+
     const monthNewMembers = members.filter((m) =>
       isThisMonth(m?.createdAt),
     ).length;
     return { todayOrders, pendingOrders, monthNewMembers };
-  }, [orders, subscriptions, members]);
+  }, [orders, members]);
 
   /* 會員 Modal */
   const [memberModalOpen, setMemberModalOpen] = useState(false);
@@ -212,7 +212,38 @@ export default function AdminDashboard() {
   };
   const saveOrder = async (formData) => {
     if (!editingOrderId) throw new Error("缺少訂單 ID");
-    const payload = { ...formData, updatedAt: nowISO() };
+
+    // [james新增] 後台 orderStatus → 前台 subscriptionStatus 對照表
+    // 目的：後台改訂單狀態時，同步更新 subscriptions[].subscriptionStatus
+    // 讓前台訂單管理頁（依 subscriptionStatus 判斷狀態）能正確連動顯示
+    const orderStatusToSubscriptionStatus = {
+      待確認: "訂閱中", // 訂單待確認，訂閱仍進行中
+      處理中: "訂閱中", // 處理中，訂閱仍進行中
+      已出貨: "訂閱中", // 已出貨，訂閱仍進行中
+      已完成: "已完成", // 訂單完成，訂閱同步標為已完成
+      已取消: "已取消", // 訂單取消，訂閱同步標為已取消
+    };
+
+    //  [james新增] 根據後台選擇的 orderStatus 決定要更新的 subscriptionStatus 值
+    const newSubscriptionStatus =
+      orderStatusToSubscriptionStatus[formData.orderStatus] ?? "訂閱中";
+
+    // [james新增] 找到目前訂單，將所有 subscriptions 的 subscriptionStatus 同步更新
+    const currentOrder = orders.find((o) => o.id === editingOrderId);
+    const updatedSubscriptions = (currentOrder?.subscriptions ?? []).map(
+      (s) => ({
+        ...s,
+        subscriptionStatus: newSubscriptionStatus,
+      }),
+    );
+
+    // [james新增] payload 加入更新後的 subscriptions，一併送出
+    const payload = {
+      ...formData,
+      subscriptions: updatedSubscriptions,
+      updatedAt: nowISO(),
+    };
+
     await axios.patch(`${API_BASE}/orders/${editingOrderId}`, payload);
     refresh();
   };
