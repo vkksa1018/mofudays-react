@@ -222,7 +222,7 @@ function Cart() {
               </div>
 
               {/* 訂單合計手機版 */}
-              <div className="col-12-sm d-none-min-sm mb-24-sm">
+              <div className="col-12-sm d-none-min-sm mb-48-sm">
                 <div className="px-16-sm">
                   <div className="total-bg d-flex justify-content-between align-items-center px-5 py-4">
                     <h6 className="ls-5">訂單合計</h6>
@@ -239,10 +239,8 @@ function Cart() {
 
             {/* 儲存按鈕手機版 */}
             <ActiveButtonPhone
-              active1="回上一步"
               active2="確認結帳"
               active3="加入新的訂閱"
-              onBack={() => navigate(-1)}
               onExtra={() => navigate("/petinfo")}
               onSubmit={async () => {
                 if (!selectedPeriod) {
@@ -261,10 +259,8 @@ function Cart() {
 
         {/* 儲存按鈕網頁版 */}
         <ActiveButtonWeb
-          active1="回上一步"
           active2="確認結帳"
           active3="加入新的訂閱"
-          onBack={() => navigate(-1)}
           onExtra={() => navigate("/petinfo")}
           onSubmit={async () => {
             if (!selectedPeriod) {

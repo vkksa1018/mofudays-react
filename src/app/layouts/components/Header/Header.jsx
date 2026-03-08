@@ -49,15 +49,18 @@ export default function Header() {
     <header className="container" id="top">
       <nav className="navbar navbar-expand-lg bg-body-white border navbar shadow-sm py-5 px-7">
         <div className="container-fluid d-flex justify-content-between">
-          <a className="navbar-brand" href="/">
+          {/* <a className="navbar-brand" href="/"> */}
+          {/* vivian修改 */}
+          <Link className="navbar-brand" to="/">
             <img
               src={maoriheLogoDefalut}
               alt="Mofudays"
               className="nav-logo"
               width={129}
               height={28}
-            />
-          </a>
+            />{" "}
+          </Link>
+          {/* </a> */}
           {/* 右邊（手機）：menu + cart */}
           <MobileTopActions />
 

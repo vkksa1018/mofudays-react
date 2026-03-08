@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useBlocker } from "react-router-dom";
+import { getUserProfile } from "../../../api/userApi";
 import {
   getCarts,
   deleteCart,
@@ -17,20 +18,15 @@ import ActiveButtonWeb from "../Subscribe/ActiveButtonWeb.jsx";
 
 function Checkout() {
   const [carts, setCarts] = useState([]);
-  const [form, setForm] = useState(() => {
-    const saved = localStorage.getItem("checkoutForm");
-    return saved
-      ? JSON.parse(saved)
-      : {
-          name: "",
-          city: "",
-          district: "",
-          street: "",
-          tel: "",
-          email: "",
-          paymentMethod: "",
-          remark: "",
-        };
+  const [form, setForm] = useState({
+    name: "",
+    city: "",
+    district: "",
+    street: "",
+    tel: "",
+    email: "",
+    paymentMethod: "",
+    remark: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({
@@ -42,17 +38,94 @@ function Checkout() {
     email: "",
     paymentMethod: "",
   });
+  const [memberProfile, setMemberProfile] = useState(null);
+  const [useMemberData, setUseMemberData] = useState(false);
   const navigate = useNavigate();
 
+  const hasFormData =
+    form.name !== "" ||
+    form.tel !== "" ||
+    form.email !== "" ||
+    form.city !== "" ||
+    form.street !== "" ||
+    form.paymentMethod !== "" ||
+    form.remark !== "";
+
+  // 攔截路由跳頁
+  const blocker = useBlocker(hasFormData);
   useEffect(() => {
-    localStorage.setItem("checkoutForm", JSON.stringify(form));
-  }, [form]);
+    if (blocker.state !== "blocked") return;
+    if (blocker.location?.pathname === "/payment") {
+      blocker.proceed();
+      return;
+    }
+    if (window.confirm("離開此頁面後，已填寫的資料將會清空，確定要離開嗎？")) {
+      blocker.proceed();
+    } else {
+      blocker.reset();
+    }
+  }, [blocker]);
+
+  // 攔截瀏覽器關閉 / 重新整理
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (!hasFormData) return;
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [hasFormData]);
 
   useEffect(() => {
     getCarts(getCurrentUserId()).then(setCarts).catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getUserProfile()
+      .then((profile) => {
+        if (profile) setMemberProfile(profile);
+      })
+      .catch(console.error);
+  }, []);
+
   const grandTotal = carts.reduce((sum, c) => sum + c.planPrice * c.planQty, 0);
+
+  const handleUseMemberData = (checked) => {
+    setUseMemberData(checked);
+    if (checked && memberProfile) {
+      setErrors((prev) => ({
+        ...prev,
+        name: "",
+        city: "",
+        district: "",
+        street: "",
+        tel: "",
+        email: "",
+      }));
+      setForm((prev) => ({
+        ...prev,
+        name: memberProfile.name || "",
+        tel: memberProfile.phone || "",
+        email: memberProfile.email || "",
+        city: memberProfile.shippingCity || memberProfile.city || "",
+        district:
+          memberProfile.shippingDistrict || memberProfile.district || "",
+        street: memberProfile.shippingAddress || memberProfile.address || "",
+      }));
+    } else {
+      setForm((prev) => ({
+        name: "",
+        city: "",
+        district: "",
+        street: "",
+        tel: "",
+        email: "",
+        paymentMethod: prev.paymentMethod,
+        remark: prev.remark,
+      }));
+    }
+  };
 
   // 錯誤提示
   const clearError = (field) => {
@@ -135,8 +208,7 @@ function Checkout() {
 
       await createOrder(orderPayload);
       await Promise.all(carts.map((c) => deleteCart(c.id)));
-      localStorage.removeItem("checkoutForm");
-      navigate(`/finish?orderId=${orderId}`);
+      navigate(`/payment?orderId=${orderId}`, { replace: true });
     } catch (err) {
       console.error("建立訂單失敗", err);
       alert("建立訂單時發生錯誤，請確認網路連線或稍後再試");
@@ -164,6 +236,9 @@ function Checkout() {
                 setForm={setForm}
                 errors={errors}
                 clearError={clearError}
+                memberProfile={memberProfile}
+                useMemberData={useMemberData}
+                onUseMemberDataChange={handleUseMemberData}
               />
             </div>
 

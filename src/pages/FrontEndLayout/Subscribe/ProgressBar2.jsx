@@ -4,7 +4,7 @@ import serviceStep3 from "../../../assets/images/subscribe/service_step_3.svg";
 
 const ProgressBar2 = ({ title, subtitle, step = 1 }) => {
   return (
-    <div className="d-flex justify-content-between align-items-center flex-col-sm px-110 px-24-sm mb-6 mb-24-sm">
+    <div className="d-flex justify-content-between align-items-center d-block-sm px-110 px-24-sm mb-6 mb-24-sm">
       {/* 標題 */}
       <div className="title py-5-5-sm mb-32-sm">
         <h2 className="fw-bold mb-2 text-center-sm">{title}</h2>
@@ -14,7 +14,7 @@ const ProgressBar2 = ({ title, subtitle, step = 1 }) => {
       </div>
 
       {/* 進度條 */}
-      <div className="step d-flex align-items-center align-item-start-sm">
+      <div className="step d-flex justify-content-center align-items-center align-item-start-sm">
         <div className="step-item">
           <img
             src={serviceStep1}
@@ -30,7 +30,12 @@ const ProgressBar2 = ({ title, subtitle, step = 1 }) => {
             alt="step_2"
             className="mx-auto d-block mb-2 mb-10-sm"
           />
-          <p className="text-center fs-14">訂單確認與結帳</p>
+          <p className="text-center fs-14 d-none-sm">訂單確認與結帳</p>
+          <p className="text-center fs-14 d-none-min-sm">
+            訂單確認
+            <br />
+            與結帳
+          </p>
         </div>
         <div className={`step-line${step < 3 ? " disabled" : ""}`}></div>
         <div className={`step-item${step < 3 ? " disabled" : ""}`}>
