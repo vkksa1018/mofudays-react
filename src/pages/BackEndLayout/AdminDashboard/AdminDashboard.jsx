@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useState, useMemo } from "react";
 import axios from "axios";
+import AdminFormModal from "../AdminUsers/components/UserFormModal";
+import OrderFormModal from "../AdminOrders/components/OrderFormModal";
 import LatestOrders from "./components/LatestOrders";
 import LatestSubscriptions from "./components/LatestSubscriptions";
 import LatestMembers from "./components/LatestMembers";
@@ -34,8 +36,9 @@ function StatCard({ title, value, unit }) {
   );
 }
 
-function Dot({ variant = "warning" }) {
-  return <span className={`ad-dot ad-dot--${variant}`} aria-hidden />;
+function isPendingStatus(raw) {
+  const s = String(raw ?? "");
+  return s.includes("待") || s.includes("處理中") || s.includes("pending");
 }
 
 export default function AdminDashboard() {
@@ -93,86 +96,106 @@ export default function AdminDashboard() {
       // }
     };
 
-    init();
+  const latestSubs = useMemo(
+    () => sortByDateDesc(subscriptions, "createdAt").slice(0, 5),
+    [subscriptions],
+  );
 
-    return () => {
-      alive = false;
-    };
-  }, [fetchDashboardData]);
+  const latestMembers = useMemo(
+    () => sortByDateDesc(members, "createdAt").slice(0, 5),
+    [members],
+  );
 
-  /* 最新資料 */
-  const latestOrders = useMemo(() => {
-    return sortByDateDesc(orders, "orderDate").slice(0, 5);
-  }, [orders]);
-
-  const latestSubs = useMemo(() => {
-    return sortByDateDesc(subscriptions, "createdAt").slice(0, 5);
-  }, [subscriptions]);
-
-  const latestMembers = useMemo(() => {
-    return sortByDateDesc(members, "createdAt").slice(0, 5);
-  }, [members]);
-
-  /*  統計卡*/
+  /* 統計卡 */
   const stats = useMemo(() => {
-    // 本日訂單數：用 orders.orderDate
-    const todayOrders = orders.filter((o) => isToday(o.orderDate)).length;
-
-    // 代處理訂單數：
-    // 你的 orders 沒有 orderStatus，這裡先用 subscriptions.shippingStatus 估算「待處理中的訂單/訂閱」
-    const pendingOrders = subscriptions.filter((s) => {
-      const status = String(s.shippingStatus || "");
-      return status.includes("待") || status.includes("處理中");
-    }).length;
-
-    // 本月新增會員：users(role=user).createdAt
+    // 取得當日最新訂單資料
+    const todayOrders = orders.filter((o) => isToday(o?.orderDate)).length;
+    // 過濾有效訂單資料
+    const ordersHasStatus = orders.some(
+      (o) => o?.orderStatus != null || o?.shippingStatus != null,
+    );
+    // 取得待處理訂單/訂閱數量
+    const pendingOrders = ordersHasStatus
+      ? orders.filter((o) =>
+          isPendingStatus(o?.orderStatus ?? o?.shippingStatus),
+        ).length
+      : subscriptions.filter((s) => isPendingStatus(s?.shippingStatus)).length;
+    //取得最新會員資料
     const monthNewMembers = members.filter((m) =>
-      isThisMonth(m.createdAt),
+      isThisMonth(m?.createdAt),
     ).length;
 
-    return {
-      todayOrders,
-      pendingOrders,
-      monthNewMembers,
-    };
+    return { todayOrders, pendingOrders, monthNewMembers };
   }, [orders, subscriptions, members]);
 
-  // 重新整理
-  const handleRefresh = async () => {
-    const toastId = adminToast.loading("重新整理儀表板資料中...");
-    try {
-      setRefreshing(true);
-      setErrorMsg("");
+  /* 打開會員Modal 用 */
+  const [memberModalOpen, setMemberModalOpen] = useState(false);
+  const [editingMemberId, setEditingMemberId] = useState(null);
+  const [editingMemberData, setEditingMemberData] = useState(null);
 
-      const data = await fetchDashboardData();
+  const openMemberEdit = (id) => {
+    setEditingMemberId(id);
 
-      setOrders(data.orders);
-      setSubscriptions(data.subscriptions);
-      setMembers(data.members);
+    const found = members.find((m) => m.id === id) ?? null;
+    setEditingMemberData(found);
 
-      adminToast.update(toastId, {
-        type: "success",
-        render: "儀表板資料已更新",
-      });
-    } catch (error) {
-      const message = getErrorMessage(error, "重新整理失敗，請稍後再試");
-      setErrorMsg(message);
-
-      adminToast.update(toastId, {
-        type: "error",
-        render: message,
-      });
-    } finally {
-      setRefreshing(false);
-    }
+    setMemberModalOpen(true);
   };
 
-  // 功能尚未開放按鈕
-  // const handleFeatureComingSoon = (label = "此功能") => {
-  //   adminToast.info(`${label}功能尚未開放`, {
-  //     toastId: `coming-soon:${label}`,
-  //   });
-  // };
+  const closeMemberModal = () => {
+    setMemberModalOpen(false);
+    setEditingMemberId(null);
+    setEditingMemberData(null);
+  };
+
+  const saveMember = async (formData) => {
+    if (!editingMemberId) throw new Error("缺少會員 ID");
+
+    const payload = {
+      ...formData,
+      updatedAt: nowISO(),
+    };
+
+    // edit 模式通常不送 password（避免空字串覆蓋）
+    delete payload.password;
+
+    await axios.patch(`${API_BASE}/users/${editingMemberId}`, payload);
+
+    refresh();
+  };
+
+  // 訂單 modal 用
+  const [orderModalOpen, setOrderModalOpen] = useState(false);
+  const [editingOrderId, setEditingOrderId] = useState(null);
+  const [editingOrderData, setEditingOrderData] = useState(null);
+
+  const openOrderEdit = (id) => {
+    setEditingOrderId(id);
+
+    const found = orders.find((o) => o.id === id) ?? null;
+    setEditingOrderData(found);
+
+    setOrderModalOpen(true);
+  };
+
+  const closeOrderModal = () => {
+    setOrderModalOpen(false);
+    setEditingOrderId(null);
+    setEditingOrderData(null);
+  };
+
+  const saveOrder = async (formData) => {
+    if (!editingOrderId) throw new Error("缺少訂單 ID");
+
+    const payload = {
+      ...formData,
+      updatedAt: nowISO?.() ?? new Date().toISOString(),
+    };
+
+    await axios.patch(`${API_BASE}/orders/${editingOrderId}`, payload);
+
+    refresh();
+  };
 
   return (
     <div
@@ -193,33 +216,45 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      {errorMsg && (
-        <div
-          className="alert alert-warning rounded-4 border-0 mb-3"
-          role="alert"
-        >
-          {errorMsg}
+          <button
+            type="button"
+            className="btn btn-sm ad-btn-refresh d-inline-flex align-items-center gap-2"
+            onClick={refresh}
+            disabled={loading || refreshing}
+            title="重新整理資料"
+          >
+            <RefreshCw size={16} className={refreshing ? "spin" : ""} />
+            {refreshing ? "重新整理中..." : "重新整理"}
+          </button>
         </div>
-      )}
 
-      {/* 統計卡 */}
-      <div className="row g-3 mb-3">
-        <div className="col-12 col-lg-4">
-          <StatCard title="本日訂單數" value={stats.todayOrders} unit="筆" />
-        </div>
-        <div className="col-12 col-lg-4">
-          <StatCard
-            title="代處理訂單數"
-            value={stats.pendingOrders}
-            unit="筆"
-          />
-        </div>
-        <div className="col-12 col-lg-4">
-          <StatCard
-            title="本月新增會員"
-            value={stats.monthNewMembers}
-            unit="名"
-          />
+        {errorMsg && (
+          <div
+            className="alert alert-warning rounded-4 border-0 mb-3"
+            role="alert"
+          >
+            {errorMsg}
+          </div>
+        )}
+
+        <div className="row g-3 mb-3">
+          <div className="col-12 col-lg-4">
+            <StatCard title="本日訂單數" value={stats.todayOrders} unit="筆" />
+          </div>
+          <div className="col-12 col-lg-4">
+            <StatCard
+              title="代處理訂單數"
+              value={stats.pendingOrders}
+              unit="筆"
+            />
+          </div>
+          <div className="col-12 col-lg-4">
+            <StatCard
+              title="本月新增會員"
+              value={stats.monthNewMembers}
+              unit="名"
+            />
+          </div>
         </div>
       </div>
 
