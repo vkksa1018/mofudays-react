@@ -26,6 +26,16 @@ export const getDogsByOwnerId = async (ownerId) => {
   }
 };
 
+// 更新毛孩資料
+export const updateDog = async (dogId, dogData) => {
+  try {
+    const response = await axios.put(`${API_BASE_URL}/dogs/${dogId}`, dogData);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || "更新毛孩失敗";
+  }
+};
+
 // 新增到購物車
 export const addToCart = async (cartData) => {
   try {

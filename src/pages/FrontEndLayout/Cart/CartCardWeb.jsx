@@ -50,7 +50,7 @@ const CartCardWeb = ({
             </button>
             <input
               type="text"
-              className="form-control text-center input-number px-0"
+              className="form-control text-center input-number radius-0 px-0"
               value={quantity}
               readOnly
               tabIndex="-1"

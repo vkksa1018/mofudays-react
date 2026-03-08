@@ -15,6 +15,7 @@ import PetInfo from "./pages/FrontEndLayout/PetInfo/PetInfo";
 import Plan from "./pages/FrontEndLayout/Plan/Plan";
 import Cart from "./pages/FrontEndLayout/Cart/Cart";
 import Checkout from "./pages/FrontEndLayout/Checkout/Checkout";
+import Payment from "./pages/FrontEndLayout/Checkout/Payment";
 import Finish from "./pages/FrontEndLayout/Finish/Finish";
 
 //usercenter
@@ -53,6 +54,7 @@ import RequireAuth from "./components/RequireAuth";
 //後台管理員權限守衛
 import RequireAdmin from "./components/RequireAdmin";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const router = createHashRouter([
   // 前台（ FrontLayout ）
   {
@@ -99,6 +101,14 @@ export const router = createHashRouter([
         element: (
           <RequireAuth>
             <Checkout />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <RequireAuth>
+            <Payment />
           </RequireAuth>
         ),
       },

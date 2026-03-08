@@ -8,8 +8,8 @@ import LatestMembers from "./components/LatestMembers";
 import "../../../styles/AdminStyle/adminDashboard.scss";
 
 import { Info, RefreshCw } from "lucide-react";
-import { nowISO, isToday, isThisMonth, sortByDateDesc } from "../utils/date";
-import { useDashboardData } from "../hooks/useDashboardData";
+import { adminToast, getErrorMessage } from "../utils/adminToast";
+import { isToday, isThisMonth, sortByDateDesc } from "../utils/adminDashboard";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -42,21 +42,59 @@ function isPendingStatus(raw) {
 }
 
 export default function AdminDashboard() {
-  const {
-    orders,
-    subscriptions,
-    members,
-    loading,
-    refreshing,
-    errorMsg,
-    refresh,
-  } = useDashboardData();
+  const [orders, setOrders] = useState([]);
+  const [subscriptions, setSubscriptions] = useState([]);
+  const [members, setMembers] = useState([]);
 
-  /* 最新資料 => 先取前面五筆顯示並排序 */
-  const latestOrders = useMemo(
-    () => sortByDateDesc(orders, "orderDate").slice(0, 5),
-    [orders],
-  );
+  const [loading, setLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [refreshing, setRefreshing] = useState(false); // toast用
+
+  const fetchDashboardData = useCallback(async () => {
+    const [ordersRes, subscriptionsRes, usersRes] = await Promise.all([
+      axios.get(`${API_BASE}/orders`),
+      axios.get(`${API_BASE}/subscriptions`),
+      axios.get(`${API_BASE}/users`, { params: { role: "user" } }),
+    ]);
+
+    return {
+      orders: Array.isArray(ordersRes.data) ? ordersRes.data : [],
+      subscriptions: Array.isArray(subscriptionsRes.data)
+        ? subscriptionsRes.data
+        : [],
+      members: Array.isArray(usersRes.data) ? usersRes.data : [],
+    };
+  }, []);
+
+  useEffect(() => {
+    let alive = true;
+
+    const init = async () => {
+      try {
+        setLoading(true);
+        setErrorMsg("");
+
+        const data = await fetchDashboardData();
+        if (!alive) return;
+
+        setOrders(data.orders);
+        setSubscriptions(data.subscriptions);
+        setMembers(data.members);
+      } catch (error) {
+        console.error("AdminDashboard 載入失敗:", error);
+        if (!alive) return;
+
+        const message = getErrorMessage(error, "資料載入失敗，請稍後再試");
+        setErrorMsg(message);
+
+        // 初次載入失敗時給一顆 toast（避免重複可加 toastId）
+        adminToast.error(message, { toastId: "dashboard-init-fail" });
+      }
+      // finally {
+      //   if (!alive) return;
+      //   setLoading(false);
+      // }
+    };
 
   const latestSubs = useMemo(
     () => sortByDateDesc(subscriptions, "createdAt").slice(0, 5),
@@ -160,12 +198,23 @@ export default function AdminDashboard() {
   };
 
   return (
-    <>
-      <div
-        className={`ad-main__inner ad-dashboard-page admin-pages ${loading ? "is-loading" : "is-ready"}`}
-      >
-        <div className="d-flex align-items-center justify-content-start mb-3 gap-2">
-          <h2 className="h5 fw-bolder m-0">數據總覽</h2>
+    <div
+      className={`ad-main__inner ad-dashboard-page ${loading ? "is-loading" : "is-ready"}`}
+    >
+      <div className="d-flex align-items-center justify-content-start mb-3 gap-2">
+        <h2 className="h5 fw-bolder m-0">數據總覽</h2>
+
+        <button
+          type="button"
+          className="btn btn-sm btn-refresh d-inline-flex align-items-center gap-2"
+          onClick={handleRefresh}
+          disabled={loading || refreshing}
+          title="重新整理資料"
+        >
+          <RefreshCw size={16} className={refreshing ? "spin" : ""} />
+          {refreshing ? "重新整理中..." : "重新整理"}
+        </button>
+      </div>
 
           <button
             type="button"
@@ -207,37 +256,16 @@ export default function AdminDashboard() {
             />
           </div>
         </div>
-
-        <LatestOrders
-          loading={loading}
-          latestOrders={latestOrders}
-          onEdit={openOrderEdit}
-        />
-        <LatestSubscriptions loading={loading} latestSubs={latestSubs} />
-        <LatestMembers
-          loading={loading}
-          latestMembers={latestMembers}
-          onEdit={openMemberEdit}
-        />
       </div>
 
-      {/*  會員編輯 modal */}
-      <AdminFormModal
-        open={memberModalOpen}
-        mode="edit"
-        initialData={editingMemberData}
-        onClose={closeMemberModal}
-        onSave={saveMember}
-      />
+      {/* 最新訂單資料 */}
+      <LatestOrders loading={loading} latestOrders={latestOrders} />
 
-      {/* 訂單編輯 modal */}
-      <OrderFormModal
-        open={orderModalOpen}
-        mode="edit"
-        initialData={editingOrderData}
-        onClose={closeOrderModal}
-        onSave={saveOrder}
-      />
-    </>
+      {/* 最新訂閱資料 */}
+      <LatestSubscriptions loading={loading} latestSubs={latestSubs} />
+
+      {/* 最新會員資料 */}
+      <LatestMembers loading={loading} latestMembers={latestMembers} />
+    </div>
   );
 }

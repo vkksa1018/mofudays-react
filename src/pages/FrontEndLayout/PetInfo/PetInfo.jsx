@@ -1,8 +1,10 @@
-/* eslint-disable no-constant-binary-expression */
+/* eslint-disable no-constant-binary-expression, react-hooks/set-state-in-effect */
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useBlocker } from "react-router-dom";
 import {
   createDog,
+  updateDog,
   getCurrentUserId,
   getDogsByOwnerId,
 } from "../../../api/planApi";
@@ -59,46 +61,49 @@ const PLAY_TO_CODE = {
 };
 
 function PetInfo() {
-  const saved = JSON.parse(localStorage.getItem("petInfoForm") || "{}");
-  const [petName, setPetName] = useState(saved.petName ?? "");
-  const [petGender, setPetGender] = useState(saved.petGender ?? "");
-  const [selectedYear, setSelectedYear] = useState(
-    saved.selectedYear ?? "選擇年齡",
-  );
-  const [selectedSize, setSelectedSize] = useState(
-    saved.selectedSize ?? "選擇體型",
-  );
-  const [selectedDiets, setSelectedDiets] = useState(saved.selectedDiets ?? []);
-  const [selectedHealth, setSelectedHealth] = useState(
-    saved.selectedHealth ?? null,
-  );
-  const [selectedPlay, setSelectedPlay] = useState(saved.selectedPlay ?? null);
+  const location = useLocation();
+  const fromPlan = location.state?.fromPlan === true;
+
+  const [petName, setPetName] = useState("");
+  const [petGender, setPetGender] = useState("");
+  const [selectedYear, setSelectedYear] = useState("選擇年齡");
+  const [selectedSize, setSelectedSize] = useState("選擇體型");
+  const [selectedDiets, setSelectedDiets] = useState([]);
+  const [selectedHealth, setSelectedHealth] = useState(null);
+  const [selectedPlay, setSelectedPlay] = useState(null);
+
   // eslint-disable-next-line no-unused-vars
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmedExistingDog, setConfirmedExistingDog] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem(
-      "petInfoForm",
-      JSON.stringify({
-        petName,
-        petGender,
-        selectedYear,
-        selectedSize,
-        selectedDiets,
-        selectedHealth,
-        selectedPlay,
-      }),
-    );
-  }, [
-    petName,
-    petGender,
-    selectedYear,
-    selectedSize,
-    selectedDiets,
-    selectedHealth,
-    selectedPlay,
-  ]);
+    if (!fromPlan) {
+      localStorage.removeItem("petInfoForm");
+      return;
+    }
+    // 從 plan 回來：還原表單資料
+    const savedData = JSON.parse(localStorage.getItem("petInfoForm") || "{}");
+    if (savedData.petName !== undefined) setPetName(savedData.petName);
+    if (savedData.petGender !== undefined) setPetGender(savedData.petGender);
+    if (savedData.selectedYear !== undefined)
+      setSelectedYear(savedData.selectedYear);
+    if (savedData.selectedSize !== undefined)
+      setSelectedSize(savedData.selectedSize);
+    if (savedData.selectedDiets !== undefined)
+      setSelectedDiets(savedData.selectedDiets);
+    if (savedData.selectedHealth !== undefined)
+      setSelectedHealth(savedData.selectedHealth);
+    if (savedData.selectedPlay !== undefined)
+      setSelectedPlay(savedData.selectedPlay);
+    // 還原 confirmedExistingDog
+    const dogId = location.state?.dogId;
+    if (dogId) {
+      getDogsByOwnerId(getCurrentUserId()).then((dogs) => {
+        const dog = dogs.find((d) => d.id === dogId);
+        if (dog) setConfirmedExistingDog(dog);
+      });
+    }
+  }, [fromPlan]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [openDropdown, setOpenDropdown] = useState(null);
   const navigate = useNavigate();
@@ -130,6 +135,7 @@ function PetInfo() {
   };
   const CODE_TO_HEALTH = { JOINT: "joint", DIGEST: "digestion", SKIN: "skin" };
   const CODE_TO_PLAY = { IQ: "brainpower", BITE: "bite", WALK: "walk" };
+
   const prefillFromDog = (dog) => {
     setPetGender(dog.gender === "M" ? "male" : "female");
     setSelectedSize(CODE_TO_SIZE[dog.size] ?? "選擇體型");
@@ -141,11 +147,54 @@ function PetInfo() {
     );
     setSelectedHealth(CODE_TO_HEALTH[dog.healthCareNeeds?.[0]] ?? null);
     setSelectedPlay(CODE_TO_PLAY[dog.activityTypes?.[0]] ?? null);
+    setErrors({
+      petYear: false,
+      petSize: false,
+      petName: false,
+      petGender: false,
+      petDiet: false,
+    });
   };
+
+  const hasFormData =
+    petName !== "" ||
+    petGender !== "" ||
+    selectedYear !== "選擇年齡" ||
+    selectedSize !== "選擇體型" ||
+    selectedDiets.length > 0;
+
+  // 攔截跳頁
+  const blocker = useBlocker(hasFormData);
+  useEffect(() => {
+    if (blocker.state !== "blocked") return;
+
+    if (blocker.location?.pathname === "/plan") {
+      blocker.proceed();
+      return;
+    }
+
+    if (window.confirm("離開此頁面後，已填寫的資料將會清空，確定要離開嗎？")) {
+      blocker.proceed();
+    } else {
+      blocker.reset();
+    }
+  }, [blocker]);
+
+  // 攔截瀏覽器關閉 / 重新整理
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (!hasFormData) return;
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [hasFormData]);
 
   // 寵物名稱驗證優化
   const handlePetNameBlur = async () => {
     if (!petName.trim()) return;
+    if (confirmedExistingDog?.name === petName.trim()) return;
 
     const existingDogs = await getDogsByOwnerId(getCurrentUserId());
     const matched = existingDogs.find(
@@ -188,7 +237,10 @@ function PetInfo() {
       petDiet: selectedDiets.length === 0,
     };
     setErrors(newErrors);
-    if (Object.values(newErrors).some(Boolean)) return;
+    if (Object.values(newErrors).some(Boolean)) {
+      alert("請確認所有必填欄位都已填寫完整！");
+      return;
+    }
 
     // 轉換成 API 代碼
     const sizeCode = SIZE_TO_CODE[selectedSize];
@@ -246,14 +298,17 @@ function PetInfo() {
       //產生推薦方案
       generatedPlans = generatePlans(formData, db);
 
-      const dogId = confirmedExistingDog
-        ? confirmedExistingDog.id
-        : (await createDog(dogPayload)).id;
+      let dogId;
+      if (confirmedExistingDog) {
+        await updateDog(confirmedExistingDog.id, dogPayload);
+        dogId = confirmedExistingDog.id;
+      } else {
+        dogId = (await createDog(dogPayload)).id;
+      }
       localStorage.setItem(
         "planState",
         JSON.stringify({ formData, dogId, generatedPlans }),
       );
-      localStorage.removeItem("petInfoForm");
       navigate("/plan", { state: { formData, dogId, generatedPlans } });
     } catch (err) {
       console.error("建立毛孩失敗", err);
@@ -394,11 +449,7 @@ function PetInfo() {
                       <button
                         className={`form-select text-start border py-3 px-5
                           ${errors.petYear ? "border-danger" : ""}
-                          ${
-                            selectedYear === "選擇年齡"
-                              ? ""
-                              : "text-primary-500 fw-bold"
-                          }`}
+                          ${selectedYear === "選擇年齡" ? "text-neutral-400" : "text-primary-500 fw-bold"}`}
                         type="button"
                         id="pet-year"
                         name="pet-year"
@@ -481,11 +532,7 @@ function PetInfo() {
                       <button
                         className={`form-select text-start border py-3 px-5
                           ${errors.petSize ? "border-danger" : ""}
-                          ${
-                            selectedSize === "選擇體型"
-                              ? ""
-                              : "text-primary-500 fw-bold"
-                          }`}
+                          ${selectedSize === "選擇體型" ? "text-neutral-400" : "text-primary-500 fw-bold"}`}
                         type="button"
                         id="pet-size"
                         onClick={() =>

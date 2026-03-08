@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { TAIWAN_DISTRICTS } from "./taiwanDistricts";
 
-const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
+const CheckoutInfo = ({
+  form,
+  setForm,
+  errors,
+  clearError,
+  memberProfile,
+  useMemberData,
+  onUseMemberDataChange,
+}) => {
   const [openDropdown, setOpenDropdown] = useState(null);
+  const effectiveDropdown = useMemberData ? null : openDropdown;
 
   return (
     <>
@@ -16,6 +25,29 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
             <div className="table-title-bg px-5 py-2 mb-2">
               <p>輸入你的個人資訊</p>
             </div>
+            {memberProfile && (
+              <div className="form-check ms-4 mb-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="use-member-data"
+                  checked={useMemberData}
+                  onChange={(e) => onUseMemberDataChange(e.target.checked)}
+                />
+                <label
+                  className="form-check-label text-brown-500"
+                  htmlFor="use-member-data"
+                >
+                  同會員資料
+                </label>
+                {useMemberData && (
+                  <span className="text-muted small ms-2">
+                    如需修改請至會員中心
+                  </span>
+                )}
+              </div>
+            )}
+
             <div className="row g-2 mb-5 checkout-form">
               {/* 姓名 */}
               <div className="col-12 px-4-sm">
@@ -30,6 +62,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                     setForm({ ...form, name: e.target.value });
                     clearError("name");
                   }}
+                  disabled={useMemberData}
                 />
                 {errors.name && (
                   <p className="text-danger mt-1 small">⚠️ {errors.name}</p>
@@ -47,6 +80,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                     setForm({ ...form, tel: e.target.value });
                     clearError("tel");
                   }}
+                  disabled={useMemberData}
                 />
                 {errors.tel && (
                   <p className="text-danger mt-1 small">⚠️ {errors.tel}</p>
@@ -66,6 +100,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                     setForm({ ...form, email: e.target.value });
                     clearError("email");
                   }}
+                  disabled={useMemberData}
                 />
                 {errors.email && (
                   <p className="text-danger mt-1 small">⚠️ {errors.email}</p>
@@ -81,18 +116,19 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
                           ${errors.city ? "border-danger" : ""}
-                          ${form.city ? "form-select-filled" : ""}`}
+                          ${form.city ? "form-select-filled" : "text-neutral-400"}`}
                         type="button"
                         onClick={() =>
                           setOpenDropdown(
                             openDropdown === "city" ? null : "city",
                           )
                         }
+                        disabled={useMemberData}
                       >
                         {form.city || "請選擇縣市"}
                       </button>
                       <ul
-                        className={`dropdown-menu w-100 ${openDropdown === "city" ? "show" : ""}`}
+                        className={`dropdown-menu w-100 ${effectiveDropdown === "city" ? "show" : ""}`}
                         style={{ maxHeight: "200px", overflowY: "auto" }}
                       >
                         {TAIWAN_DISTRICTS.map((item) => (
@@ -128,19 +164,19 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
                           ${errors.district ? "border-danger" : ""}
-                          ${form.district ? "form-select-filled" : ""}`}
+                          ${form.district ? "form-select-filled" : "text-neutral-400"}`}
                         type="button"
-                        disabled={!form.city}
                         onClick={() =>
                           setOpenDropdown(
                             openDropdown === "district" ? null : "district",
                           )
                         }
+                        disabled={useMemberData || !form.city}
                       >
                         {form.district || "請選擇地區"}
                       </button>
                       <ul
-                        className={`dropdown-menu w-100 ${openDropdown === "district" ? "show" : ""}`}
+                        className={`dropdown-menu w-100 ${effectiveDropdown === "district" ? "show" : ""}`}
                         style={{ maxHeight: "200px", overflowY: "auto" }}
                       >
                         {TAIWAN_DISTRICTS.find(
@@ -178,6 +214,7 @@ const CheckoutInfo = ({ form, setForm, errors, clearError }) => {
                         setForm({ ...form, street: e.target.value });
                         clearError("street");
                       }}
+                      disabled={useMemberData}
                     />
                     {errors.street && (
                       <p className="text-danger mt-1 small">
