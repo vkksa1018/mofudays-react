@@ -1,56 +1,23 @@
-import React from "react";
+import { RouterProvider } from "react-router";
+import { router } from "./router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { initUserAuth } from "./slices/userAuthSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initUserAuth()); // App 啟動時驗證 token，取代 AuthContext 的 initAuth
+  }, [dispatch]);
+
   return (
-    <div className="container py-5">
-      {/* 1. 測試 Bootstrap 字體與顏色 */}
-      <div className="p-5 mb-4 bg-light rounded-3 border">
-        <div className="container-fluid py-5 text-center">
-          <h1 className="display-5 fw-bold text-primary">毛日和系統測試</h1>
-          <p className="fs-4">
-            如果這行字是 Zen Maru Gothic 字體，代表 Google Fonts 成功。
-            <br />
-            如果標題是你的品牌顏色，代表 _variables.scss 成功。
-          </p>
-
-          {/* 2. 測試你的 _button.scss */}
-          <div className="d-flex justify-content-center gap-3 mt-4">
-            <button className="btn btn-primary btn-lg">主要按鈕</button>
-            <button className="btn btn-outline-secondary btn-lg">
-              次要按鈕
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. 測試 Bootstrap Grid 系統 */}
-      <div className="row g-4">
-        <div className="col-md-4">
-          <div className="card h-100 shadow-sm">
-            <div className="card-body text-center">
-              <h5 className="card-title">Grid 測試 1</h5>
-              <p className="card-text text-muted">左側區塊</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card h-100 shadow-sm border-primary">
-            <div className="card-body text-center">
-              <h5 className="card-title">Grid 測試 2</h5>
-              <p className="card-text text-muted">中間區塊</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card h-100 shadow-sm">
-            <div className="card-body text-center">
-              <h5 className="card-title">Grid 測試 3</h5>
-              <p className="card-text text-muted">右側區塊</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <ToastContainer position="top-center" autoClose={2000} />
+      <RouterProvider router={router} />
+    </>
   );
 }
 

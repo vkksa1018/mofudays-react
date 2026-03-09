@@ -1,0 +1,7 @@
+/* 功能頁共用樣式入口：拆分後統一由這裡匯入 */
+
+@import "./admin-pages/admin-pages.animations";
+@import "./admin-pages/admin-pages.base";
+@import "./admin-pages/admin-pages.table-pagination";
+@import "./admin-pages/admin-pages.modal";
+@import "./admin-pages/admin-pages.mobile";

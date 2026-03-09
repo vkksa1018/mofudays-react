@@ -1,0 +1,79 @@
+.signup-form {
+  padding: 100px 80px;
+}
+
+.inp-required {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input[type="date"] {
+  color: $neutral-400;
+}
+
+/* 讓左欄與右欄等高（row 是 flex，會拉伸；左欄內部也要撐滿） */
+.col-img {
+  display: flex;
+}
+.col-img .carousel {
+  flex: 1;
+}
+
+/* 讓 carousel 內層一路吃到父層高度 */
+.col-img .carousel,
+.col-img .carousel-inner,
+.col-img .carousel-item {
+  height: 100%;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // 這是關鍵：讓圖片像背景一樣鋪滿，自動裁切多餘部分
+  object-position: center; // 確保圖片中心對齊
+}
+
+// 確保輪播的所有層級都撐滿高度
+.carousel,
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+}
+
+.form-select {
+  color: #000 !important; // 或你的主題文字色
+}
+
+select.form-select {
+  position: static !important;
+  left: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 100% !important;
+}
+
+.signup-form {
+  select.form-select {
+    color: #333 !important;
+    background-color: #fff !important;
+
+    font-size: 0.875rem !important;
+    padding: 0.5rem 2rem 0.5rem 0.75rem !important;
+    white-space: nowrap;
+    background-position: right 0.4rem center !important;
+
+    // 針對行動裝置微調
+    @media (max-width: 576px) {
+      font-size: 0.8rem !important;
+      padding-right: 1.5rem !important;
+    }
+  }
+}
