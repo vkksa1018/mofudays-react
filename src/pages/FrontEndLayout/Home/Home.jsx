@@ -10,6 +10,7 @@ import NewsModal from "./components/NewsModal";
 import Announcement from "../../../app/layouts/components/Announcement/Announcement";
 
 function Home() {
+  console.log("API URL:", import.meta.env.VITE_API_URL);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false); //FloatingChat 預設關閉
 
