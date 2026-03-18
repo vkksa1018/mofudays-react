@@ -287,59 +287,59 @@ export default function UserProfile({ onSave }) {
 
             {/* 住家地址 */}
             <div className="row mb-56 position-relative">
-              <label htmlFor="city" className="col-md-2 form-label p1 mb-2">
+              <label htmlFor="city" className="col-md-2 col-form-label p1">
                 住家地址
               </label>
-              <div className="row g-3 col-md-10">
-                {/* 縣市 */}
-                <div className="col-6 col-md-3">
-                  <select
-                    className="form-select"
-                    id="city"
-                    name="city"
-                    required
-                    value={formData.city}
-                    onChange={handleChange}
-                  >
-                    {taiwanRegions.map((city) => (
-                      <option key={city.name} value={city.name}>
-                        {city.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="col-md-10">
+                <div className="row g-3">
+                  <div className="col-6">
+                    <select
+                      className="form-select"
+                      id="city"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
+                    >
+                      {taiwanRegions.map((city) => (
+                        <option key={city.name} value={city.name}>
+                          {city.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                {/* 區域 */}
-                <div className="col-6 col-md-3">
-                  <select
-                    className="form-select"
-                    id="district"
-                    name="district"
-                    required
-                    value={formData.district}
-                    onChange={handleChange}
-                  >
-                    {homeDistricts.map((dist) => (
-                      <option key={dist} value={dist}>
-                        {dist}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                  <div className="col-6">
+                    <select
+                      className="form-select"
+                      id="district"
+                      name="district"
+                      required
+                      value={formData.district}
+                      onChange={handleChange}
+                    >
+                      {homeDistricts.map((dist) => (
+                        <option key={dist} value={dist}>
+                          {dist}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                {/* 詳細地址 */}
-                <div className="col-12 col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="address"
-                    name="address"
-                    placeholder="請輸入詳細地址"
-                    required
-                    value={formData.address}
-                    onChange={handleChange}
-                  />
-                  <div className="invalid-tooltip">請輸入詳細地址!</div>
+                  {/* 詳細地址 */}
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address"
+                      name="address"
+                      placeholder="請輸入詳細地址"
+                      required
+                      value={formData.address}
+                      onChange={handleChange}
+                    />
+                    <div className="invalid-tooltip">請輸入詳細地址!</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -351,96 +351,76 @@ export default function UserProfile({ onSave }) {
               <i className="bi bi-cart me-2"></i>送貨資料
             </h2>
 
-            {/* <img
-              src={shippingCart}
-              alt="行進中的貨車圖"
-              className="position-absolute img-shipping-cart img-shake top-0 end-0 z-2"
-            /> */}
-            {/* <img
-              src={aboutBg}
-              alt="黃色底框"
-              className="position-absolute img-shipping-cart img-shake top-0 end-0 z-1"
-            /> */}
-            {/* <img
-              src={waitingDog}
-              alt="等待中的小狗狗"
-              className="position-absolute img-waiting-dog transform-x img-shake top-1 end-1 z-1"
-            /> */}
-
             <div className="row mb-3">
               <label
                 htmlFor="shippingCity"
-                className="col-md-2 form-label p1 mb-2"
+                className="col-md-2 col-form-label p1"
               >
                 送貨地址
               </label>
 
-              <div className="row g-3 mb-2 col-md-10">
-                {/* 送貨縣市 */}
-                <div className="col-6 col-md-3">
-                  <select
-                    className="form-select"
-                    id="shippingCity"
-                    name="shippingCity"
-                    required
-                    disabled={sameAsHome}
-                    value={formData.shippingCity}
-                    onChange={handleChange}
-                  >
-                    <option value="" disabled>
-                      請選擇縣市
-                    </option>
-                    {taiwanRegions.map((city) => (
-                      <option key={city.name} value={city.name}>
-                        {city.name}
+              <div className="col-md-10">
+                <div className="row g-3 mb-2">
+                  <div className="col-6">
+                    <select
+                      className="form-select"
+                      id="shippingCity"
+                      name="shippingCity"
+                      required
+                      disabled={sameAsHome}
+                      value={formData.shippingCity}
+                      onChange={handleChange}
+                    >
+                      <option value="" disabled>
+                        請選擇縣市
                       </option>
-                    ))}
-                  </select>
-                </div>
+                      {taiwanRegions.map((city) => (
+                        <option key={city.name} value={city.name}>
+                          {city.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                {/* 送貨區域 */}
-                <div className="col-6 col-md-3">
-                  <select
-                    className="form-select"
-                    id="shippingDistrict"
-                    name="shippingDistrict"
-                    required
-                    disabled={sameAsHome}
-                    value={formData.shippingDistrict}
-                    onChange={handleChange}
-                  >
-                    <option value="" disabled>
-                      請選擇區域
-                    </option>
-                    {shippingDistricts.map((dist) => (
-                      <option key={dist} value={dist}>
-                        {dist}
+                  <div className="col-6">
+                    <select
+                      className="form-select"
+                      id="shippingDistrict"
+                      name="shippingDistrict"
+                      required
+                      disabled={sameAsHome}
+                      value={formData.shippingDistrict}
+                      onChange={handleChange}
+                    >
+                      <option value="" disabled>
+                        請選擇區域
                       </option>
-                    ))}
-                  </select>
+                      {shippingDistricts.map((dist) => (
+                        <option key={dist} value={dist}>
+                          {dist}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="shippingAddress"
+                      name="shippingAddress"
+                      placeholder="詳細地址"
+                      required
+                      disabled={sameAsHome}
+                      value={formData.shippingAddress}
+                      onChange={handleChange}
+                    />
+                    <div className="invalid-tooltip">請輸入送達地址!</div>
+                  </div>
                 </div>
 
-                {/* 送貨詳細地址 */}
-                <div className="col-12 col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="shippingAddress"
-                    name="shippingAddress"
-                    placeholder="詳細地址"
-                    required
-                    disabled={sameAsHome}
-                    value={formData.shippingAddress}
-                    onChange={handleChange}
-                  />
-                  <div className="invalid-tooltip">請輸入送達地址!</div>
-                </div>
-              </div>
-
-              {/* 同住家地址 Checkbox */}
-              <div className="row">
-                <div className="col-2"></div>
-                <div className="form-check mb-0 col-10">
+                {/* 同住家地址 Checkbox */}
+                <div className="form-check mb-0 mt-2">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -455,7 +435,6 @@ export default function UserProfile({ onSave }) {
               </div>
             </div>
           </div>
-
           <div className="d-flex justify-content-center mt-80">
             <button
               type="submit"
