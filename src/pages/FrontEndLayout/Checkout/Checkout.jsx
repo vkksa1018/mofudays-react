@@ -226,7 +226,7 @@ function Checkout() {
           <ProgressBar2 title="訂單確認" step={2} />
 
           {/* 訂單明細卡片 */}
-          <div className="card-bg py-9 px-110 px-12-sm mb-6 mb-0-sm">
+          <div className="card-bg py-9 px-110 px-60-lg px-12-sm mb-6 mb-0-sm">
             <div className="px-16-sm">
               {/* 訂單明細 */}
               <OrderList carts={carts} grandTotal={grandTotal} />

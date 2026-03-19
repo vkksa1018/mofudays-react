@@ -18,7 +18,7 @@ const CheckoutInfo = ({
       {/* 結帳資訊 */}
       <div className="row-table mb-48-sm">
         <div className="col-table-10">
-          <h5 className="mb-5 ls-5 text-center-sm">結帳資訊</h5>
+          <h5 className="mb-5 ls-5 text-center-md">結帳資訊</h5>
 
           {/* 個人資訊 */}
           <div className="personal-info">
@@ -111,7 +111,7 @@ const CheckoutInfo = ({
               <div className="col-12 px-4-sm">
                 <div className="row g-2">
                   {/* 縣市 */}
-                  <div className="col-3 col-12-sm px-4-sm">
+                  <div className="col-3 col-12-md px-4-sm">
                     <div className="dropdown">
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
@@ -125,7 +125,7 @@ const CheckoutInfo = ({
                         }
                         disabled={useMemberData}
                       >
-                        {form.city || "請選擇縣市"}
+                        {form.city || "縣市"}
                       </button>
                       <ul
                         className={`dropdown-menu w-100 ${effectiveDropdown === "city" ? "show" : ""}`}
@@ -159,7 +159,7 @@ const CheckoutInfo = ({
                   </div>
 
                   {/* 地區 */}
-                  <div className="col-3 col-12-sm px-4-sm">
+                  <div className="col-3 col-12-md px-4-sm">
                     <div className="dropdown">
                       <button
                         className={`form-select text-start fw-regular border py-3 px-5
@@ -173,7 +173,7 @@ const CheckoutInfo = ({
                         }
                         disabled={useMemberData || !form.city}
                       >
-                        {form.district || "請選擇地區"}
+                        {form.district || "地區"}
                       </button>
                       <ul
                         className={`dropdown-menu w-100 ${effectiveDropdown === "district" ? "show" : ""}`}
@@ -204,7 +204,7 @@ const CheckoutInfo = ({
                   </div>
 
                   {/* 街道與門牌 */}
-                  <div className="col-6 col-12-sm px-4-sm">
+                  <div className="col-6 col-12-md px-4-sm">
                     <input
                       type="text"
                       className={`form-control ${errors.street ? "border-danger" : ""}`}

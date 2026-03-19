@@ -5,11 +5,11 @@ import serviceStep2 from "../../../assets/images/subscribe/service_step_2.svg";
 
 const ProgressBar1 = ({ step = 1 }) => {
   return (
-    <div className="d-flex justify-content-between align-items-center d-block-sm px-110 px-24-sm mb-6 mb-24-sm">
+    <div className="progressbar-1 d-flex justify-content-between align-items-center d-block-sm px-110 px-60-lg px-24-sm mb-6 mb-24-sm">
       {/* 標題 */}
       <div className="title py-5-5-sm mb-32-sm">
-        <h2 className="fw-bold mb-2 text-center-sm">簡單 2 步驟</h2>
-        <p className="fw-bold text-center-sm">為毛孩送上每月一盒溫暖心意</p>
+        <h2 className="fw-bold mb-2 text-center-lg">簡單 2 步驟</h2>
+        <p className="fw-bold text-center-lg">為毛孩送上每月一盒溫暖心意</p>
       </div>
 
       {/* 進度條 */}
