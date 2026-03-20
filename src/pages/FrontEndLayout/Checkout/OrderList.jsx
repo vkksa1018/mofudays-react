@@ -7,11 +7,12 @@ const OrderList = ({ carts, grandTotal }) => {
       <div className="row-table mb-6">
         {/* 表格 */}
         <div className="col-table-10">
-          <h5 className="mb-5 ls-5 text-center-sm">訂單明細</h5>
+          <h5 className="mb-5 ls-5 text-center-md">訂單明細</h5>
 
           {/* 表格標題網頁版 */}
-          <div className="table-title-bg d-flex py-2 mb-2 d-none-sm">
-            <p className="col-table-1-5 text-center">訂閱期數</p>
+          <div className="table-title-bg d-flex py-2 mb-2 d-none-md">
+            <p className="col-table-1-5 text-center d-none-lg">訂閱期數</p>
+            <p className="col-table-1-5 text-center d-none-min-lg">期數</p>
             <p className="col-table-4 p-nowrap text-center">品項</p>
             <p className="col-table-1-5 p-nowrap text-center">單價</p>
             <p className="col-table-1-5 p-nowrap text-center">數量</p>
@@ -19,7 +20,7 @@ const OrderList = ({ carts, grandTotal }) => {
           </div>
 
           {/* 表格標題手機版 */}
-          <div className="table-title-bg d-flex py-2 mb-2 d-none-min-sm">
+          <div className="table-title-bg d-flex py-2 mb-2 d-none-min-md">
             <p className="col-table-6 p-nowrap text-center">品項</p>
             <p className="col-table-2 p-nowrap text-center">數量</p>
             <p className="col-table-2 p-nowrap text-center">單價</p>

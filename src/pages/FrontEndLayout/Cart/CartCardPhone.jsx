@@ -12,7 +12,7 @@ const CartCardPhone = ({
   return (
     <>
       <div className="px-16-sm">
-        <div className="table-container-bg p-16-sm mb-8-sm d-none-min-sm">
+        <div className="table-container-bg p-16-lg mb-8-sm d-none-min-lg">
           {/* 圖片+品項+關閉+單價 */}
           <div className="d-flex justify-content-between align-items-start">
             {/* 圖片+品項 */}
@@ -52,7 +52,7 @@ const CartCardPhone = ({
 
           {/* 數量+小計 */}
           <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center w-50-sm">
+            <div className="d-flex align-items-center w-30-lg w-50-md">
               <div className="input-group">
                 <button
                   className="btn btn-quantity px-3 py-3"

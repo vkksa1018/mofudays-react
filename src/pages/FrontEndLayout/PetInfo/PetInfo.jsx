@@ -331,12 +331,12 @@ function PetInfo() {
             <div className="row justify-content-center">
               {/* 標題 */}
               <div className="col-10">
-                <h4 className="fw-bold text-primary-500 text-center-sm mb-40">
+                <h4 className="fw-bold text-primary-500 fs-24-lg text-center-sm mb-40">
                   幫助我們先認識你的毛孩～
                 </h4>
               </div>
               {/* 左邊欄位 */}
-              <div className="col-4 col-12-sm pe-5 pe-12-sm">
+              <div className="col-4 col-5-lg col-12-sm pe-5 pe-12-sm">
                 <div className="px-16-sm">
                   {/* 毛孩名稱 */}
                   <div className="pet-name mb-7 mb-24-sm">
@@ -344,8 +344,8 @@ function PetInfo() {
                       htmlFor="pet-name"
                       className="form-label d-flex align-items-center mb-4"
                     >
-                      <p className="icon-dog fs-24 fs-20-sm fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold">
+                      <p className="icon-dog fs-24 fs-20-sm me-3"></p>
+                      <p className="item-title fw-bold fs-16-md">
                         毛孩的名字是？
                         <span className="align-top align-text-bottom-sm">
                           *必填
@@ -377,7 +377,7 @@ function PetInfo() {
                   <div className="pet-gender mb-7 mb-24-sm">
                     <div className="d-flex align-items-center mb-4">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold">
+                      <p className="item-title fw-bold fs-16-md">
                         毛孩是什麼性別？
                         <span className="align-top align-text-bottom-sm">
                           *必填
@@ -434,7 +434,7 @@ function PetInfo() {
                   <div className="pet-year mb-7 mb-24-sm">
                     <div className="d-flex mb-2 align-items-center">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold text-middle">
+                      <p className="item-title fw-bold fs-16-md text-middle">
                         毛孩幾歲了？
                         <span className="align-top align-text-bottom-sm">
                           *必填
@@ -517,7 +517,7 @@ function PetInfo() {
                   <div className="pet-size mb-7 mb-24-sm">
                     <div className="d-flex align-items-center mb-2">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold">
+                      <p className="item-title fw-bold fs-16-md">
                         牠是什麼體型的狗狗？
                         <span className="align-top align-text-bottom-sm">
                           *必填
@@ -594,13 +594,13 @@ function PetInfo() {
               </div>
 
               {/* 右邊欄位 */}
-              <div className="col-6 col-12-sm">
+              <div className="col-6 col-5-lg col-12-sm">
                 <div className="px-16-sm">
                   {/* 過敏食材 */}
                   <div className="pet-diet mb-7 mb-24-sm">
                     <div className="d-flex mb-2 align-items-center">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold text-middle">
+                      <p className="item-title fw-bold fs-16-md text-middle">
                         毛孩有什麼過敏或忌口的食材？ ( 可複選最多 3 項 )
                         <span className="align-top align-text-bottom-sm">
                           *必填
@@ -612,7 +612,7 @@ function PetInfo() {
                     </p>
 
                     {/* 食材按鈕 */}
-                    <div className="diet d-flex flex-wrap gap-3 gap-8-sm">
+                    <div className="diet gap-3 gap-8-sm">
                       {/* 雞肉 */}
                       <DietButton
                         dietId="drumstick"
@@ -794,7 +794,7 @@ function PetInfo() {
                   <div className="pet-health mb-7 mb-24-sm">
                     <div className="d-flex mb-2 align-items-center">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold text-middle">
+                      <p className="item-title fw-bold fs-16-md text-middle">
                         想替毛孩加強什麼保健需求？
                       </p>
                     </div>
@@ -802,7 +802,7 @@ function PetInfo() {
                       最近毛孩有沒有哪個部分想特別照顧的呢？我們會貼心幫你挑選對應的營養品
                     </p>
 
-                    <div className="d-grid d-block-sm gap-5 card-grid">
+                    <div className="d-grid d-block-lg gap-5 card-grid">
                       {/* 關節保健 */}
                       <HealthCard
                         healthId="joint"
@@ -836,7 +836,7 @@ function PetInfo() {
                   <div className="pet-play mb-7 mb-48-sm">
                     <div className="d-flex mb-2 align-items-center">
                       <p className="icon-dog fs-24 fs-20-sm me-3"></p>
-                      <p className="item-title fw-bold text-middle">
+                      <p className="item-title fw-bold fs-16-md text-middle">
                         毛孩平常最喜歡哪種互動方式？
                       </p>
                     </div>
@@ -844,7 +844,7 @@ function PetInfo() {
                       你平常都怎麼與毛孩互動的呢？讓我們更了解牠的個性與喜好！
                     </p>
 
-                    <div className="d-grid d-block-sm gap-5 card-grid">
+                    <div className="d-grid d-block-lg gap-5 card-grid">
                       <PlayCard
                         playId="brainpower"
                         playImg={playImg1}
@@ -889,7 +889,7 @@ function PetInfo() {
             {/* 儲存按鈕電腦版 */}
             <div className="text-center d-none-min-sm">
               <button
-                className="btn btn-primary rounded-pill btn-subscribe fs-18-sm px-100 w-100-sm"
+                className="btn btn-primary rounded-pill btn-subscribe fs-20-md fs-18-sm px-100 w-100-sm"
                 to="/plan"
                 role="button"
                 type="submit"
@@ -903,7 +903,7 @@ function PetInfo() {
           {/* 儲存按鈕手機版 */}
           <div className="text-center d-none-sm">
             <button
-              className="btn btn-primary rounded-pill btn-subscribe fs-18-sm px-100 w-100-sm"
+              className="btn btn-primary rounded-pill btn-subscribe fs-20-md fs-18-sm px-100 w-100-sm"
               to="/plan"
               role="button"
               type="submit"
