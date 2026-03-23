@@ -95,18 +95,18 @@ function Plan() {
           <ProgressBar1 step={2} />
 
           {/* 推薦方案 */}
-          <div className="card-bg py-9 px-12-sm mb-6 mb-0-sm">
-            <div className="row justify-content-center">
+          <div className="card-bg py-9 px-110 px-60-lg px-12-sm mb-6 mb-0-sm">
+            <div className="justify-content-center">
               {/* 標題 */}
-              <div className="col-10">
+              <div className="col-12">
                 <h4 className="fw-bold text-primary-500 text-center-sm mb-40 mb-24-sm">
                   選擇方案
                 </h4>
               </div>
 
-              <div className="col-10 d-flex d-block-sm gap-5">
+              <div className="col-12 d-flex d-block-md gap-5">
                 {/* 左邊欄位 */}
-                <div className="plan-title justify-content-center px-26 p-16-sm mb-24-sm">
+                <div className="plan-title justify-content-center px-26 p-16-md mb-24-md">
                   <img
                     src={planImg}
                     alt="推薦方案"

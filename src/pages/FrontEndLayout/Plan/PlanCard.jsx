@@ -27,7 +27,7 @@ const PlanCard = ({
         htmlFor={id}
       >
         <div className="d-flex justify-content-between mb-2">
-          <p className="fs-6 fs-18-sm fw-bold">{title}</p>
+          <p className="fs-6 fs-18-sm fw-bold text-start">{title}</p>
           <p className="total-text fs-14 text-brown-500 text-end">
             <span className="plan-price fs-20-sm fw-medium pe-1">${price}</span>
             /月

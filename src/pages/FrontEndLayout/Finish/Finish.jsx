@@ -34,13 +34,14 @@ function Finish() {
             title="訂閱成功！"
             subtitle="謝謝你成為毛日和的夥伴"
             step={3}
+            className="finish-progress"
           />
 
           {/* 訂單內容卡片 */}
-          <div className="card-bg py-9 px-110 px-12-sm mb-6 mb-0-sm">
+          <div className="card-bg py-9 px-110 px-60-lg px-12-sm mb-6 mb-0-sm">
             <div className="px-16-sm">
               {/* 感謝訂閱文字 */}
-              <div className="fs-14-sm text-center-sm px-12-sm mb-6 mb-24-sm">
+              <div className="fs-14-sm text-center-lg px-12-sm mb-6 mb-24-sm">
                 <p className="text-brown-300 mb-1">
                   親愛的客戶您好，您的訂單我們已經收到，感謝您訂閱毛日盒!
                 </p>
@@ -57,7 +58,12 @@ function Finish() {
 
                   {/* 表格標題網頁版 */}
                   <div className="table-title-bg d-flex py-2 mb-2 d-none-sm">
-                    <p className="col-table-1-5 text-center">訂閱期數</p>
+                    <p className="col-table-1-5 text-center d-none-lg">
+                      訂閱期數
+                    </p>
+                    <p className="col-table-1-5 text-center d-none-min-lg">
+                      期數
+                    </p>
                     <p className="col-table-4 p-nowrap text-center">品項</p>
                     <p className="col-table-1-5 p-nowrap text-center">單價</p>
                     <p className="col-table-1-5 p-nowrap text-center">數量</p>
@@ -99,13 +105,30 @@ function Finish() {
                 </div>
               </div>
 
-              {/* 說明文字 */}
-              <p className="fs-14-sm text-center px-12-sm mb-48-sm">
+              {/* 說明文字電腦版 */}
+              <p className="fs-14-sm text-center d-none-lg">
                 您可至
                 <Link to="/usercenter/orders" className="text-primary-500">
                   訂單管理頁面
                 </Link>
                 查看訂購紀錄，如有任何問題或其他意見，歡迎
+                <a
+                  href="mailto:service.maorihe@gmail.com"
+                  className="text-primary-500"
+                >
+                  聯繫我們
+                </a>
+                ，謝謝!
+              </p>
+              {/* 說明文字平板版 */}
+              <p className="fs-14-sm text-center px-12-sm mb-48-sm d-none-min-lg">
+                您可至
+                <Link to="/usercenter/orders" className="text-primary-500">
+                  訂單管理頁面
+                </Link>
+                查看訂購紀錄，
+                <br />
+                如有任何問題或其他意見，歡迎
                 <a
                   href="mailto:service.maorihe@gmail.com"
                   className="text-primary-500"
