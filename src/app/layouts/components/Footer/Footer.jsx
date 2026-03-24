@@ -11,7 +11,7 @@ export default function Footer() {
       {/* footer info */}
       <div className="footer-info">
         <div className="container">
-          <div className="d-md-flex text-center text-md-start align-items-center">
+          <div className="d-lg-flex text-center text-md-start align-items-center">
             <FooterLeft />
             <FooterRight />
           </div>
@@ -30,14 +30,14 @@ export default function Footer() {
 function FooterLeft() {
   return (
     <div className="container">
-      <div className="col-12 col-md-6 d-flex flex-column flex-md-row align-items-center gap-3">
+      <div className="col-12 col-lg-6 d-flex flex-column flex-md-row align-items-center gap-3">
         <div className="d-flex align-items-center gap-2 mb-0">
           <a href="index.html">
             <img src={footerLogo} alt="logo" className="footer-logo" />
           </a>
         </div>
 
-        <div className="d-inline-flex flex-column align-items-center align-items-md-start text-start gap-3 footer-contact">
+        <div className="d-inline-flex flex-column align-items-center align-items-lg-start text-start gap-3 footer-contact">
           {/* Desktop contact */}
           <div>
             <a
@@ -108,7 +108,7 @@ function SocialLinks() {
 function FooterRight() {
   return (
     <div className="container">
-      <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-evenly gap-4 gap-md-0">
+      <div className="d-flex flex-column flex-lg-row align-items-center justify-content-md-evenly gap-4 gap-md-0">
         <FooterLinkList
           title="外部資源"
           items={[
