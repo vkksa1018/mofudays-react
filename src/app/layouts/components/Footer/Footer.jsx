@@ -11,7 +11,7 @@ export default function Footer() {
       {/* footer info */}
       <div className="footer-info">
         <div className="container">
-          <div className="d-lg-flex text-center text-md-start align-items-center">
+          <div className="d-xl-flex text-center text-md-start align-items-center">
             <FooterLeft />
             <FooterRight />
           </div>
@@ -30,7 +30,7 @@ export default function Footer() {
 function FooterLeft() {
   return (
     <div className="container">
-      <div className="col-12 col-lg-6 d-flex flex-column flex-md-row align-items-center gap-3">
+      <div className="col-12 col-xl-6 d-flex flex-column flex-xl-row align-items-center gap-3">
         <div className="d-flex align-items-center gap-2 mb-0">
           <a href="index.html">
             <img src={footerLogo} alt="logo" className="footer-logo" />
@@ -108,26 +108,28 @@ function SocialLinks() {
 function FooterRight() {
   return (
     <div className="container">
-      <div className="d-flex flex-column flex-lg-row align-items-center justify-content-md-evenly gap-4 gap-lg-0">
-        <FooterLinkList
-          title="外部資源"
-          items={[
-            { label: "寵物殯葬", href: "#" },
-            { label: "寵物醫療", href: "#" },
-            { label: "寵物保險", href: "#" },
-            { label: "浪浪援助", href: "#" },
-          ]}
-        />
+      <div className="col-12 col-xl-6 ms-xl-auto">
+        <div className="d-flex flex-column flex-xl-row align-items-center justify-content-md-evenly gap-4 gap-lg-0">
+          <FooterLinkList
+            title="外部資源"
+            items={[
+              { label: "寵物殯葬", href: "#" },
+              { label: "寵物醫療", href: "#" },
+              { label: "寵物保險", href: "#" },
+              { label: "浪浪援助", href: "#" },
+            ]}
+          />
 
-        <FooterLinkList
-          title="常見問題"
-          items={[
-            { label: "FAQ", to: "/faq" },
-            { label: "物流配送", to: "/faq" },
-            { label: "退換貨政策", to: "/faq" },
-            { label: "細則與條款", to: "/faq" },
-          ]}
-        />
+          <FooterLinkList
+            title="常見問題"
+            items={[
+              { label: "FAQ", to: "/faq" },
+              { label: "物流配送", to: "/faq" },
+              { label: "退換貨政策", to: "/faq" },
+              { label: "細則與條款", to: "/faq" },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
@@ -135,7 +137,7 @@ function FooterRight() {
 
 function FooterLinkList({ title, items }) {
   return (
-    <div className="col-4">
+    <div className="col-5 col-md-auto">
       <ul className="footer-list text-center">
         <li className="zen-maru-gothic-regular py-2 border-bottom mb-3">
           {title}
