@@ -251,7 +251,9 @@ export default function AdminDashboard() {
   /* Render */
   return (
     <div
-      className={`ad-main__inner ad-dashboard-page ${loading ? "is-loading" : "is-ready"}`}
+      className={`ad-main__inner ad-dashboard-page ${
+        loading ? "is-loading" : "is-ready"
+      }`}
     >
       <div className="d-flex align-items-center justify-content-start mb-3 gap-2">
         <h2 className="h5 fw-bolder m-0">數據總覽</h2>
@@ -277,33 +279,23 @@ export default function AdminDashboard() {
         </div>
       )}
 
-        {errorMsg && (
-          <div
-            className="alert alert-warning rounded-4 border-0 mb-3"
-            role="alert"
-          >
-            {errorMsg}
-          </div>
-        )}
-
-        <div className="row g-3 mb-3">
-          <div className="col-lg-4">
-            <StatCard title="本日訂單數" value={stats.todayOrders} unit="筆" />
-          </div>
-          <div className="col-lg-4">
-            <StatCard
-              title="代處理訂單數"
-              value={stats.pendingOrders}
-              unit="筆"
-            />
-          </div>
-          <div className="col-lg-4">
-            <StatCard
-              title="本月新增會員"
-              value={stats.monthNewMembers}
-              unit="名"
-            />
-          </div>
+      <div className="row g-3 mb-3">
+        <div className="col-lg-4">
+          <StatCard title="本日訂單數" value={stats.todayOrders} unit="筆" />
+        </div>
+        <div className="col-lg-4">
+          <StatCard
+            title="代處理訂單數"
+            value={stats.pendingOrders}
+            unit="筆"
+          />
+        </div>
+        <div className="col-lg-4">
+          <StatCard
+            title="本月新增會員"
+            value={stats.monthNewMembers}
+            unit="名"
+          />
         </div>
       </div>
 
@@ -315,7 +307,9 @@ export default function AdminDashboard() {
         getOrderQty={getOrderQty}
         getOrderStatus={getOrderStatus}
       />
+
       <LatestSubscriptions loading={loading} latestSubs={latestSubs} />
+
       <LatestMembers
         loading={loading}
         latestMembers={latestMembers}
