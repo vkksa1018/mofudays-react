@@ -127,7 +127,7 @@ export default function OrderFormModal({
               {/* {orderSectionOpen && ( */}
                 <div className="row g-4">
                   {/* 訂單編號 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">訂單編號</label>
                     <input
                       className="form-control form-control-sm"
@@ -137,7 +137,7 @@ export default function OrderFormModal({
                     <input type="hidden" {...register("id")} />
                   </div>
                   {/* 付款狀態 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">付款狀態</label>
                     <select
                       className="form-select form-select-sm"
@@ -153,7 +153,7 @@ export default function OrderFormModal({
                     <input type="hidden" {...register("paymentStatus")} />
                   </div>
                   {/* 訂單狀態 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">訂單狀態</label>
                     <select
                       className="form-select form-select-sm"
@@ -167,7 +167,7 @@ export default function OrderFormModal({
                     </select>
                   </div>
                   {/* 訂單總金額 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">訂單總金額</label>
                     <input
                       type="number"
@@ -179,7 +179,7 @@ export default function OrderFormModal({
                     <input type="hidden" {...register("orderTotalAmount")} />
                   </div>
                   {/* 訂單日期 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">訂單日期</label>
                     <input
                       type="datetime-local"
@@ -196,9 +196,9 @@ export default function OrderFormModal({
                       </div>
                     )}
                   </div>
-                  <div className="col-12 col-xl-4" />
+                  <div className="col-xl-4" />
                   {/* 客戶名稱 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">客戶名稱</label>
                     <input
                       className="form-control form-control-sm"
@@ -206,7 +206,7 @@ export default function OrderFormModal({
                     />
                   </div>
                   {/* 客戶 Email */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">客戶Email</label>
                     <input
                       className={`form-control form-control-sm ${
@@ -226,7 +226,7 @@ export default function OrderFormModal({
                     )}
                   </div>
                   {/* 客戶電話 */}
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">客戶電話</label>
                     <input
                       className="form-control form-control-sm"
@@ -234,14 +234,14 @@ export default function OrderFormModal({
                     />
                   </div>
                   {/* 客戶地址 */}
-                  <div className="col-12 col-xl-12">
+                  <div className="col-xl-12">
                     <label className="form-label small">客戶地址</label>
                     <input
                       className="form-control form-control-sm"
                       {...register("buyerAddress")}
                     />
                   </div>
-                  <div className="col-12 col-xl-12">
+                  <div className="col-xl-12">
                     <label className="form-label small">備註</label>
                     <textarea
                       rows={3}
@@ -250,7 +250,7 @@ export default function OrderFormModal({
                     />
                   </div>
 
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">建立日</label>
                     <input
                       className="form-control form-control-sm"
@@ -259,7 +259,7 @@ export default function OrderFormModal({
                     />
                   </div>
 
-                  <div className="col-12 col-xl-4">
+                  <div className="col-xl-4">
                     <label className="form-label small">更新日</label>
                     <input
                       className="form-control form-control-sm"
