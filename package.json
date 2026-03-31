@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "server": "json-server-auth db.json --port 3000"
+    "server": "node server.cjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
