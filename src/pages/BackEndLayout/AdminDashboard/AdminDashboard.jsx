@@ -251,9 +251,10 @@ export default function AdminDashboard() {
   /* Render */
   return (
     <div
-      className={`ad-main__inner ad-dashboard-page ${
-        loading ? "is-loading" : "is-ready"
-      }`}
+      // className={`ad-main__inner ad-dashboard-page ${
+      //   loading ? "is-loading" : "is-ready"
+      // }`}
+      className="ad-main__inner ad-dashboard-page"
     >
       <div className="d-flex align-items-center justify-content-start mb-3 gap-2">
         <h2 className="h5 fw-bolder m-0">數據總覽</h2>
