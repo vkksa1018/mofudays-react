@@ -18,8 +18,8 @@
   --side-w-collapsed: 76px;
   --ad-transition: 280ms ease;
 
-  height: 100dvh;
-  min-height: 100dvh;
+  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: var(--side-w) minmax(0, 1fr);
   background: #f4f0ec;
