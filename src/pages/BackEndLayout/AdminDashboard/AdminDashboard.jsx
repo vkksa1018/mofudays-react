@@ -132,8 +132,8 @@ export default function AdminDashboard() {
         if (isRefresh) setRefreshing(false);
         else {
           setLoading(false);
-          // 雙 rAF：確保瀏覽器至少 paint 一次後再掛 is-ready，動畫才看得到
-          requestAnimationFrame(() => requestAnimationFrame(() => setIsReady(true)));
+          // 延遲一個 frame 再加 is-ready，確保 DOM 先 paint 再跑動畫
+          requestAnimationFrame(() => setIsReady(true));
         }
       }
     },
@@ -257,7 +257,7 @@ export default function AdminDashboard() {
   return (
     <div
       className={`ad-main__inner ad-dashboard-page ${
-        isReady ? "is-ready" : "is-loading"
+        isReady ? "is-loading" : "is-ready"
       }`}
     >
       <div className="d-flex align-items-center justify-content-start mb-3 gap-2">

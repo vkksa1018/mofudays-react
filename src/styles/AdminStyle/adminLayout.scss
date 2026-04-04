@@ -18,12 +18,12 @@
   --side-w-collapsed: 76px;
   --ad-transition: 280ms ease;
 
-  height: 100vh;
-  min-height: 100vh;
+  position: fixed;
+  inset: 0;
   display: grid;
   grid-template-columns: var(--side-w) minmax(0, 1fr);
   background: #f4f0ec;
-  overflow: hidden; // 避免整頁水平捲軸
+  overflow: hidden;
   transition: grid-template-columns var(--ad-transition);
 }
 
@@ -550,8 +550,6 @@
 @media (max-width: 992px) {
   .ad-dashboard {
     grid-template-columns: 1fr;
-    height: 100dvh;
-    min-height: 100dvh;
   }
 
   /* overlay 啟用 */
