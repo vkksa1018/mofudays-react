@@ -491,12 +491,3 @@
   }
 }
 
-// 暫時 debug 用 - 強制顯示
-.ad-dashboard-page.is-ready > *:not(.modal),
-.ad-dashboard-page.is-loading > *:not(.modal) {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
-  filter: none !important;
-  visibility: visible !important;
-}
