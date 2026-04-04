@@ -257,7 +257,7 @@ export default function AdminDashboard() {
   return (
     <div
       className={`ad-main__inner ad-dashboard-page ${
-        isReady ? "is-loading" : "is-ready"
+        isReady ? "is-ready" : "is-loading"
       }`}
     >
       <div className="d-flex align-items-center justify-content-start mb-3 gap-2">
