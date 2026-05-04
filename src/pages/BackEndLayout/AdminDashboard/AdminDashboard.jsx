@@ -82,6 +82,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   const fetchDashboardData = useCallback(async () => {
     const [ordersRes, subscriptionsRes, usersRes] = await Promise.all([
@@ -129,7 +130,11 @@ export default function AdminDashboard() {
         }
       } finally {
         if (isRefresh) setRefreshing(false);
-        else setLoading(false);
+        else {
+          setLoading(false);
+          // 延遲一個 frame 再加 is-ready，確保 DOM 先 paint 再跑動畫
+          requestAnimationFrame(() => setIsReady(true));
+        }
       }
     },
     [fetchDashboardData],
@@ -252,7 +257,7 @@ export default function AdminDashboard() {
   return (
     <div
       className={`ad-main__inner ad-dashboard-page ${
-        loading ? "is-loading" : "is-ready"
+        isReady ? "is-ready" : "is-loading"
       }`}
     >
       <div className="d-flex align-items-center justify-content-start mb-3 gap-2">

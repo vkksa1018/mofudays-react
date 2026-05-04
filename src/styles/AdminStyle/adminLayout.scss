@@ -18,12 +18,12 @@
   --side-w-collapsed: 76px;
   --ad-transition: 280ms ease;
 
-  height: 100dvh;
-  min-height: 100dvh;
+  position: fixed;
+  inset: 0;
   display: grid;
   grid-template-columns: var(--side-w) minmax(0, 1fr);
   background: #f4f0ec;
-  overflow: hidden; // 避免整頁水平捲軸
+  overflow: hidden;
   transition: grid-template-columns var(--ad-transition);
 }
 
@@ -40,6 +40,7 @@
 /* ===== Overlay（手機版抽屜背景） ===== */
 .ad-side__overlay {
   display: none;
+  position:fixed;
   border: 0;
   padding: 0;
   background: rgba(0, 0, 0, 0.35);
@@ -57,7 +58,7 @@
   flex-direction: column;
   gap: 12px;
 
-  height: 100dvh;
+  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable;
@@ -413,7 +414,7 @@
 .ad-main {
   min-width: 0;
   min-height: 0;
-  height: 100dvh;
+  height: 100vh;
   overflow: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable both-edges;
@@ -549,8 +550,6 @@
 @media (max-width: 992px) {
   .ad-dashboard {
     grid-template-columns: 1fr;
-    height: 100dvh;
-    min-height: 100dvh;
   }
 
   /* overlay 啟用 */

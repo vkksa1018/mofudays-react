@@ -13,6 +13,7 @@ export default function AdminLogin() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
     setError,
   } = useForm({
@@ -24,6 +25,18 @@ export default function AdminLogin() {
   });
 
   const [showPwd, setShowPwd] = useState(false); // 是否顯示密碼
+  const [showForgotHint, setShowForgotHint] = useState(false);
+
+  const handleForgotPwd = (e) => {
+    e.preventDefault();
+    setShowForgotHint(true);
+    setTimeout(() => setShowForgotHint(false), 3000);
+  };
+
+  const fillTestCredentials = () => {
+    setValue("email", "test@mofudays.com");
+    setValue("password", "12345678");
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -105,9 +118,16 @@ export default function AdminLogin() {
                 </label>
               </div>
 
-              <a href="#help" onClick={(e) => e.preventDefault()}>
-                忘記密碼？
-              </a>
+              <div className="position-relative">
+                <a href="#help" onClick={handleForgotPwd}>
+                  忘記密碼？
+                </a>
+                {showForgotHint && (
+                  <div className="forgot-hint">
+                    🚧 此功能尚未開放，敬請期待
+                  </div>
+                )}
+              </div>
             </div>
 
             <button
@@ -115,6 +135,14 @@ export default function AdminLogin() {
               disabled={isSubmitting}
             >
               {isSubmitting ? "登入中..." : "登入"}
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-test-fill rounded w-100 mt-2 small"
+              onClick={fillTestCredentials}
+            >
+              填入測試帳號
             </button>
 
             {errors.root && (
